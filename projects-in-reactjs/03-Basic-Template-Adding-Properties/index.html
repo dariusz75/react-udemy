@@ -20,13 +20,13 @@
           <nav className="navbar navbar-default">
             <div className="container">
               <div className="navbar-header">
-                <a className="navbar-brand" href="#">Logo</a>
+                <a className="navbar-brand" href="#">{this.props.brand}</a>
               </div>
               <div id="navbar">
                 <ul className="nav navbar-nav">
-                  <li className="active"><a href="#">Home</a></li>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Contact</a></li>
+                  <li className={(this.props.currentPage === 'home') ? 'active': ''}><a href="#">Home</a></li>
+                  <li className={(this.props.currentPage === 'about') ? 'active': ''}><a href="#">About</a></li>
+                  <li className={(this.props.currentPage === 'contact') ? 'active': ''}><a href="#">Contact</a></li>
                 </ul>
               </div>
             </div>
@@ -42,8 +42,8 @@
           <div>
           <div className="jumbotron">
             <div className="container">
-              <h1>Hello, world!</h1>
-              <p className="lead">This is a Bootstrap theme that uses React.js components</p>
+              <h1>{this.props.heading}</h1>
+              <p className="lead">{this.props.text}</p>
               <p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
             </div>
           </div>
@@ -58,7 +58,7 @@
         return(
           <div>
             <div className="container">
-              This is the home page
+              <h2>{this.props.currentPage}</h2>
             </div>
           </div>
         );
@@ -70,9 +70,9 @@
       render(){
         return(
           <div>
-            <Navbar />
-            <Jumbotron />
-            <Page />
+            <Navbar currentPage='home' brand='ReactStrap'/>
+            <Jumbotron heading='This text comes from heading property' text='This text comes from text property'/>
+            <Page currentPage='This text comes from currentPage property'/>
           </div>
         );
       }
