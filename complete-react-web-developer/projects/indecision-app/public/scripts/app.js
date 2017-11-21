@@ -1,29 +1,31 @@
 'use strict';
 
-// Template created as JSX - JavaScript XML
-var template = React.createElement(
-	'div',
-	null,
-	React.createElement(
-		'h1',
-		null,
-		'This is JSX!'
-	),
-	React.createElement(
-		'p',
-		null,
-		'This is some info'
-	)
-);
-
-// Template created as JSX expression
 var user = {
 	name: 'Mike',
-	age: 27,
+	age: 28,
 	location: 'New York'
 };
 
-var templateTwo = React.createElement(
+function getLocationOne(location) {
+	if (location) {
+		return location;
+	} else {
+		return 'Unknown';
+	}
+}
+
+function getLocationTwo(location) {
+	if (location) {
+		return React.createElement(
+			'p',
+			null,
+			'Location ',
+			location
+		);
+	}
+}
+
+var templateOne = React.createElement(
 	'div',
 	null,
 	React.createElement(
@@ -41,10 +43,103 @@ var templateTwo = React.createElement(
 		'p',
 		null,
 		'Location: ',
-		user.location
+		getLocationOne(user.location)
+	)
+);
+
+var templateTwo = React.createElement(
+	'div',
+	null,
+	React.createElement(
+		'h1',
+		null,
+		user.name
+	),
+	React.createElement(
+		'p',
+		null,
+		'Age: ',
+		user.age
+	),
+	getLocationTwo(user.location)
+);
+
+var templateThree = React.createElement(
+	'div',
+	null,
+	React.createElement(
+		'h1',
+		null,
+		user.name
+	),
+	user.age && React.createElement(
+		'p',
+		null,
+		'Age: ',
+		user.age
+	),
+	getLocationTwo(user.location)
+);
+
+var templateFour = React.createElement(
+	'div',
+	null,
+	React.createElement(
+		'h1',
+		null,
+		user.name ? user.name : 'Persona non grata'
+	),
+	React.createElement(
+		'p',
+		null,
+		'Age: ',
+		user.age ? user.age : 'Unnown'
+	),
+	getLocationTwo(user.location)
+);
+
+var templateFive = React.createElement(
+	'div',
+	null,
+	React.createElement(
+		'h1',
+		null,
+		user.name ? user.name : 'Persona non grata'
+	),
+	React.createElement(
+		'p',
+		null,
+		'Age: ',
+		user.age && user.age >= 18 ? user.age : 'Under 18'
+	),
+	getLocationTwo(user.location)
+);
+
+var challengeData = {
+	title: 'Challenger',
+	subtitle: 'Challenge accepted!',
+	options: ['Challenge One', 'Challenge Two']
+};
+
+var challengeTemplate = React.createElement(
+	'div',
+	null,
+	React.createElement(
+		'h1',
+		null,
+		challengeData.title
+	),
+	challengeData.subtitle && React.createElement(
+		'p',
+		null,
+		challengeData.subtitle
+	),
+	React.createElement(
+		'p',
+		null,
+		challengeData.options.length > 0 ? 'Here are your options' : 'No options'
 	)
 );
 
 var appRoot = document.getElementById('app');
-
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(challengeTemplate, appRoot);
