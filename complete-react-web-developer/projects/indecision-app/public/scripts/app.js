@@ -1,145 +1,52 @@
 'use strict';
 
-var user = {
-	name: 'Mike',
-	age: 28,
-	location: 'New York'
+var count = 0;
+
+var addOne = function addOne() {
+	count++;
+	renderCounterApp();
 };
 
-var getLocationOne = function getLocationOne(location) {
-	if (location) {
-		return location;
-	} else {
-		return 'Unknown';
-	}
+var minusOne = function minusOne() {
+	count--;
+	renderCounterApp();
 };
 
-var getLocationTwo = function getLocationTwo(location) {
-	if (location) {
-		return React.createElement(
-			'p',
-			null,
-			'Location ',
-			location
-		);
-	}
+var reset = function reset() {
+	count = 0;
+	renderCounterApp();
 };
-
-var templateOne = React.createElement(
-	'div',
-	null,
-	React.createElement(
-		'h1',
-		null,
-		user.name
-	),
-	React.createElement(
-		'p',
-		null,
-		'Age: ',
-		user.age
-	),
-	React.createElement(
-		'p',
-		null,
-		'Location: ',
-		getLocationOne(user.location)
-	)
-);
-
-var templateTwo = React.createElement(
-	'div',
-	null,
-	React.createElement(
-		'h1',
-		null,
-		user.name
-	),
-	React.createElement(
-		'p',
-		null,
-		'Age: ',
-		user.age
-	),
-	getLocationTwo(user.location)
-);
-
-var templateThree = React.createElement(
-	'div',
-	null,
-	React.createElement(
-		'h1',
-		null,
-		user.name
-	),
-	user.age && React.createElement(
-		'p',
-		null,
-		'Age: ',
-		user.age
-	),
-	getLocationTwo(user.location)
-);
-
-var templateFour = React.createElement(
-	'div',
-	null,
-	React.createElement(
-		'h1',
-		null,
-		user.name ? user.name : 'Persona non grata'
-	),
-	React.createElement(
-		'p',
-		null,
-		'Age: ',
-		user.age ? user.age : 'Unnown'
-	),
-	getLocationTwo(user.location)
-);
-
-var templateFive = React.createElement(
-	'div',
-	null,
-	React.createElement(
-		'h1',
-		null,
-		user.name ? user.name : 'Persona non grata'
-	),
-	React.createElement(
-		'p',
-		null,
-		'Age: ',
-		user.age && user.age >= 18 ? user.age : 'Under 18'
-	),
-	getLocationTwo(user.location)
-);
-
-var challengeData = {
-	title: 'Challenger',
-	subtitle: 'Challenge accepted!',
-	options: ['Challenge One', 'Challenge Two']
-};
-
-var challengeTemplate = React.createElement(
-	'div',
-	null,
-	React.createElement(
-		'h1',
-		null,
-		challengeData.title
-	),
-	challengeData.subtitle && React.createElement(
-		'p',
-		null,
-		challengeData.subtitle
-	),
-	React.createElement(
-		'p',
-		null,
-		challengeData.options.length > 0 ? 'Here are your options' : 'No options'
-	)
-);
 
 var appRoot = document.getElementById('app');
-ReactDOM.render(templateTwo, appRoot);
+
+var renderCounterApp = function renderCounterApp() {
+	var templateTwo = React.createElement(
+		'div',
+		null,
+		React.createElement(
+			'h1',
+			null,
+			'Count: ',
+			count
+		),
+		React.createElement(
+			'button',
+			{ onClick: addOne },
+			'+1'
+		),
+		React.createElement(
+			'button',
+			{ onClick: minusOne },
+			'-1'
+		),
+		React.createElement(
+			'button',
+			{ onClick: reset },
+			'Reset'
+		)
+	);
+
+	ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();
