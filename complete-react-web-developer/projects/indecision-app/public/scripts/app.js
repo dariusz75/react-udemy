@@ -6,15 +6,15 @@ var user = {
 	location: 'New York'
 };
 
-function getLocationOne(location) {
+var getLocationOne = function getLocationOne(location) {
 	if (location) {
 		return location;
 	} else {
 		return 'Unknown';
 	}
-}
+};
 
-function getLocationTwo(location) {
+var getLocationTwo = function getLocationTwo(location) {
 	if (location) {
 		return React.createElement(
 			'p',
@@ -23,7 +23,7 @@ function getLocationTwo(location) {
 			location
 		);
 	}
-}
+};
 
 var templateOne = React.createElement(
 	'div',
@@ -142,4 +142,4 @@ var challengeTemplate = React.createElement(
 );
 
 var appRoot = document.getElementById('app');
-ReactDOM.render(challengeTemplate, appRoot);
+ReactDOM.render(templateTwo, appRoot);

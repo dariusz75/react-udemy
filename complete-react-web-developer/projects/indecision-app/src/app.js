@@ -5,7 +5,7 @@ var user = {
 	location: 'New York'
 }
 
-function getLocationOne(location) {
+const getLocationOne = (location) => {
 	if (location) {
 		return location;
 	} else {
@@ -13,7 +13,7 @@ function getLocationOne(location) {
 	}
 }
 
-function getLocationTwo(location) {
+const getLocationTwo = (location) => {
 	if (location) {
 		return <p>Location {location}</p>;
 	} 
@@ -85,4 +85,4 @@ var challengeTemplate = (
 
 
 var appRoot = document.getElementById('app');
-ReactDOM.render(challengeTemplate, appRoot);
+ReactDOM.render(templateTwo, appRoot);
