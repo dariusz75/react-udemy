@@ -30,10 +30,7 @@ const onRemoveAll = () => {
 const appRoot = document.getElementById('app');
 
 
-<<<<<<< HEAD
 
-renderCounterApp();
-=======
 const render = () => {
 
 	const template = (
@@ -58,4 +55,4 @@ const render = () => {
 }
 
 render();
->>>>>>> 07-forms-and-inputs
+
