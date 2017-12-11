@@ -1,35 +1,56 @@
-let count = 0;
+console.log('application is running');
 
-const addOne = () => {
-	count++;
-	renderCounterApp();
+
+const app = {
+	title: 'Indecision App',
+	subtitle: 'Put your life in your hands',
+	options: []
 };
 
-const minusOne = () => {
-	count--;
-	renderCounterApp();
-};
+const onFormSubmit = (e) => {
+	e.preventDefault();
 
-const reset = () => {
-	count = 0;
-	renderCounterApp();
-};
+	const option = e.target.elements.option.value;
+
+	if (option) {
+		app.options.push(option);
+		e.target.elements.option.value = '';
+		render();
+	}
+	console.log(app.options);
+}
+
+const onRemoveAll = () => {
+	app.options = [];
+	console.log(app.options);
+	render();
+}
 
 
 const appRoot = document.getElementById('app');
 
 
-const renderCounterApp = () => {
-	const templateTwo = (
-	<div>
-		<h1>Count: {count}</h1>
-		<button onClick={addOne}>+1</button>
-		<button onClick={minusOne}>-1</button>
-		<button onClick={reset}>Reset</button>
-	</div>
-);
+const render = () => {
 
-	ReactDOM.render(templateTwo, appRoot);
-};
+	const template = (
+		<div>
+			<h1>{app.title}</h1>
+			{app.subtitle && <p>{app.subtitle}</p>}
+			<p>{app.options.length > 0 ? 'Your options' : 'No options'}</p>
+			<p>{app.options.length}</p>
+			<button onClick={onRemoveAll}>Remove All</button>
+			<ol>
+				<li>Item one</li>
+				<li>Item two</li>
+			</ol>
+			<form onSubmit={onFormSubmit}>
+				<input type="text" name="option"/>
+				<button>Add Option</button>
+			</form>
+		</div>
+	);
 
-renderCounterApp();
+	ReactDOM.render(template, appRoot); 
+}
+
+render();
