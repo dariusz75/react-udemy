@@ -1,4 +1,3 @@
-
 'use strict';
 
 console.log('application is running');
@@ -13,10 +12,12 @@ var onFormSubmit = function onFormSubmit(e) {
 	e.preventDefault();
 
 	var option = e.target.elements.option.value;
-
+	var keyValue = 0;
+	;
 	if (option) {
 		app.options.push(option);
 		e.target.elements.option.value = '';
+		keyValue = keyValue + 1;
 		render();
 	}
 	console.log(app.options);
@@ -63,16 +64,13 @@ var render = function render() {
 		React.createElement(
 			'ol',
 			null,
-			React.createElement(
-				'li',
-				null,
-				'Item one'
-			),
-			React.createElement(
-				'li',
-				null,
-				'Item two'
-			)
+			app.options.map(function (option) {
+				return React.createElement(
+					'li',
+					{ key: option },
+					option
+				);
+			})
 		),
 		React.createElement(
 			'form',
@@ -90,4 +88,3 @@ var render = function render() {
 };
 
 render();
-

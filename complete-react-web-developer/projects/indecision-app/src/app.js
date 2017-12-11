@@ -11,10 +11,12 @@ const onFormSubmit = (e) => {
 	e.preventDefault();
 
 	const option = e.target.elements.option.value;
-
+	let keyValue = 0;
+	;
 	if (option) {
 		app.options.push(option);
 		e.target.elements.option.value = '';
+		keyValue = keyValue +1;
 		render();
 	}
 	console.log(app.options);
@@ -30,7 +32,6 @@ const onRemoveAll = () => {
 const appRoot = document.getElementById('app');
 
 
-
 const render = () => {
 
 	const template = (
@@ -41,8 +42,11 @@ const render = () => {
 			<p>{app.options.length}</p>
 			<button onClick={onRemoveAll}>Remove All</button>
 			<ol>
-				<li>Item one</li>
-				<li>Item two</li>
+				{
+					app.options.map(function(option){
+						return (<li key={option}>{option}</li>);
+					})
+				}
 			</ol>
 			<form onSubmit={onFormSubmit}>
 				<input type="text" name="option"/>
