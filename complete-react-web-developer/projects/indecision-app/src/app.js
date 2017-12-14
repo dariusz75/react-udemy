@@ -15,11 +15,32 @@ class Person {
 }
 
 
-const me = new Person('Dariusz', 20);
-console.log(me.getGretting());
+class Student extends Person {
+	constructor(name, age, major) {
+		super(name, age);
+		this.major = major || 'Not decided';
+	}
+	hasMajor() {
+		return !!this.major;
+	}
+}
+
+
+class Traveler extends Person {
+	constructor(name, age, homeLocaton) {
+		super(name, age);
+		this.homeLocaton = homeLocaton;
+	}
+	getGretting() {
+		
+	}
+}
+
+const me = new Student('Dariusz', 20, 'Front End');
+console.log(me);
 console.log(me.getDescription());
-const other = new Person();
-console.log(other.getDescription());
+const other = new Student();
+//console.log(other);
 
 
 
