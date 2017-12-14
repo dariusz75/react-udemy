@@ -1,41 +1,23 @@
 console.log('application is running');
 
-
-const app = {
-	title: 'Toggle Button',
-	options: ['Show info', 'Hide Info'],
-	infoText: ['This is an info text'],
-	infoDiv: []
-};
-
+let visible = false;
 
 const onToggleButton = () => {
-	console.log('test');
+	visible = !visible;
 	render();
-}
-
-const placeInfo = () => {
-	if(app.infoDiv.length === 0) {
-		app.infoDiv.push(app.infoText[0]);
-		console.log(app.infoDiv);
-	} else {
-		app.infoDiv = [];
-	}
-	render();
-}
+};
 
 
 
 const appRoot = document.getElementById('app');
 
-
 const render = () => {
 
 	const template = (
 		<div>
-			<h1>{app.title}</h1>
-			<button disabled={false} onClick={placeInfo}>{app.infoDiv.length > 0 ? 'Hide Info' : 'Show Info'}</button>
-			<p>{app.infoDiv}</p>
+			<h1>Info Toggle</h1>
+			<button onClick={onToggleButton}>{visible ? 'Hide Info' : 'Show Info'}</button>
+			{visible && (<p>This is info text</p>)}
 		</div>
 	);
 

@@ -2,25 +2,10 @@
 
 console.log('application is running');
 
-var app = {
-	title: 'Toggle Button',
-	options: ['Show info', 'Hide Info'],
-	infoText: ['This is an info text'],
-	infoDiv: []
-};
+var visible = false;
 
 var onToggleButton = function onToggleButton() {
-	console.log('test');
-	render();
-};
-
-var placeInfo = function placeInfo() {
-	if (app.infoDiv.length === 0) {
-		app.infoDiv.push(app.infoText[0]);
-		console.log(app.infoDiv);
-	} else {
-		app.infoDiv = [];
-	}
+	visible = !visible;
 	render();
 };
 
@@ -34,17 +19,17 @@ var render = function render() {
 		React.createElement(
 			'h1',
 			null,
-			app.title
+			'Info Toggle'
 		),
 		React.createElement(
 			'button',
-			{ disabled: false, onClick: placeInfo },
-			app.infoDiv.length > 0 ? 'Hide Info' : 'Show Info'
+			{ onClick: onToggleButton },
+			visible ? 'Hide Info' : 'Show Info'
 		),
-		React.createElement(
+		visible && React.createElement(
 			'p',
 			null,
-			app.infoDiv
+			'This is info text'
 		)
 	);
 
