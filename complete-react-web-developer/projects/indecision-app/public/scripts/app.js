@@ -1,4 +1,3 @@
-
 'use strict';
 
 console.log('application is running');
@@ -90,4 +89,3 @@ var render = function render() {
 };
 
 render();
-
