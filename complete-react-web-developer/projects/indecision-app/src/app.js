@@ -1,58 +1,63 @@
 console.log('application is running');
 
-
-const app = {
-	title: 'Indecision App',
-	subtitle: 'Put your life in your hands',
-	options: []
-};
-
-const onFormSubmit = (e) => {
-	e.preventDefault();
-
-	const option = e.target.elements.option.value;
-
-	if (option) {
-		app.options.push(option);
-		e.target.elements.option.value = '';
-		render();
+class Person {
+	constructor (name, age) {
+		this.name = name || 'Person unknown';
+		this.age = age || 0;
 	}
-	console.log(app.options);
+	getGretting() {
+		//return 'Hi My name is ' + this.name + ' !';
+		return `Hi! I'm ${this.name}!`;
+	}
+	getDescription() {		
+			return `${this.name} is ${this.age} years old.`;
+	}
 }
 
-const onRemoveAll = () => {
-	app.options = [];
-	console.log(app.options);
-	render();
+
+class Student extends Person {
+	constructor(name, age, major) {
+		super(name, age);
+		this.major = major || 'Not decided';
+	}
+	hasMajor() {
+		return !!this.major;
+	}
 }
+
+
+class Traveler extends Person {
+	constructor(name, age, homeLocaton) {
+		super(name, age);
+		this.homeLocaton = homeLocaton;
+	}
+	getGretting() {
+		
+	}
+}
+
+const me = new Student('Dariusz', 20, 'Front End');
+console.log(me);
+console.log(me.getDescription());
+const other = new Student();
+//console.log(other);
+
+
+
+
 
 
 const appRoot = document.getElementById('app');
 
-
-
 const render = () => {
 
 	const template = (
-		<div>
-			<h1>{app.title}</h1>
-			{app.subtitle && <p>{app.subtitle}</p>}
-			<p>{app.options.length > 0 ? 'Your options' : 'No options'}</p>
-			<p>{app.options.length}</p>
-			<button onClick={onRemoveAll}>Remove All</button>
-			<ol>
-				<li>Item one</li>
-				<li>Item two</li>
-			</ol>
-			<form onSubmit={onFormSubmit}>
-				<input type="text" name="option"/>
-				<button>Add Option</button>
-			</form>
-		</div>
+			<h1>Please check the console.</h1>		
 	);
 
 	ReactDOM.render(template, appRoot); 
 }
 
 render();
+
 
