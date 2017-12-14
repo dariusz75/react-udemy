@@ -1,11 +1,28 @@
 console.log('application is running');
 
-let visible = false;
+class Person {
+	constructor (name, age) {
+		this.name = name || 'Person unknown';
+		this.age = age || 0;
+	}
+	getGretting() {
+		//return 'Hi My name is ' + this.name + ' !';
+		return `Hi! I'm ${this.name}!`;
+	}
+	getDescription() {		
+			return `${this.name} is ${this.age} years old.`;
+	}
+}
 
-const onToggleButton = () => {
-	visible = !visible;
-	render();
-};
+
+const me = new Person('Dariusz', 20);
+console.log(me.getGretting());
+console.log(me.getDescription());
+const other = new Person();
+console.log(other.getDescription());
+
+
+
 
 
 
@@ -14,11 +31,7 @@ const appRoot = document.getElementById('app');
 const render = () => {
 
 	const template = (
-		<div>
-			<h1>Info Toggle</h1>
-			<button onClick={onToggleButton}>{visible ? 'Hide Info' : 'Show Info'}</button>
-			{visible && (<p>This is info text</p>)}
-		</div>
+			<h1>Please check the console.</h1>		
 	);
 
 	ReactDOM.render(template, appRoot); 
@@ -27,11 +40,3 @@ const render = () => {
 render();
 
 
-
-/* 
-Zadaniem tego cwiczenia jest:
-
-1. Wyswietlenie lub schowanie tekstu po nacisnieciu przycisku.
-2. Zmiana tekstu przycisku w zaleznosci od stanu wyswietlanej informacji.
-
-*/
