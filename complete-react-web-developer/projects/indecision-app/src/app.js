@@ -27,6 +27,12 @@ const onRemoveAll = () => {
 	render();
 }
 
+const onMakeDecision = () => {
+	const randomArayIndex = Math.floor(Math.random() * app.options.length);
+	const randomOption = app.options[randomArayIndex];
+	console.log(randomArayIndex);
+	console.log(randomOption);
+}
 
 const appRoot = document.getElementById('app');
 
@@ -37,7 +43,7 @@ const render = () => {
 		<div>
 			<h1>{app.title}</h1>
 			<p>{app.options.length > 0 ? 'Your options' : 'No options'}</p>
-			<p>{app.options.length}</p>
+			<button disabled={app.options.length === 0} onClick={onMakeDecision}>Log random table element</button>
 			<button onClick={onRemoveAll}>Remove All</button>
 			<ol>
 				{
@@ -61,6 +67,32 @@ render();
 
 
 /* 
+Zadaniem tego cwiczenia jest pobranie przypadkowej wartosci z tablicy.
+
+Posluzy nam do tego bardzo prosta funkcja:
+
+const onMakeDecision = () => {
+	const randomArayIndex = Math.floor(Math.random() * app.options.length);
+	const randomOption = app.options[randomArayIndex];
+	console.log(randomArayIndex);
+	console.log(randomOption);
+}
+
+
+Gdzie:
+const randomArayIndex = Math.floor(Math.random() * app.options.length) - pobiera losowo index tablicy
+const randomOption = app.options[randomArayIndex] - pobiera losowo element tablicy wskazujac go poprzez losowo wbrany index
+
+Dodatkowo wylaczylismy przycisk 'Log random table element' kiedy tablica nie posiada zadnego elementu.
+<button disabled={app.options.length === 0} onClick={onMakeDecision}>Log random table element</button>
+
+
+
+
+
+
+
+##################### objasnienia poprzedniego cwiczenia #########################
 Zadaniem tego cwiczenia jest wyswietlenie listy wartosci tablicy jako zbior elementow <ul>
 Wykonamy to za pomoca wbudowanej metody map()
 
