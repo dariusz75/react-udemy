@@ -16,6 +16,7 @@ class IndecisionApp extends React.Component {
 	} 
 }
 
+
 class Header extends React.Component {
 	render() {
 		console.log(this.props);
@@ -27,6 +28,7 @@ class Header extends React.Component {
 		);
 	} 
 }
+
 
 class Action extends React.Component {
 	
@@ -43,17 +45,20 @@ class Action extends React.Component {
 	}
 }
 
+
 class Options extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleRemoveAll = this.handleRemoveAll.bind(this);
+	}
 
 	handleRemoveAll() {
-		console.log('Remove all!');
+		console.log(this.props.options);
 	}
 
 	render() {
-		console.log(this.props);
 		return (
 			<div>
-				<h3>Options component here - {this.props.options.length} options avaliable.</h3>
 				{
 					this.props.options.map(function(optionFromArray){
 						return (<p key={optionFromArray}>{optionFromArray}</p>);
@@ -64,7 +69,6 @@ class Options extends React.Component {
 		);
 	}
 }
-
 
 
 class AddOption extends React.Component {
@@ -90,6 +94,7 @@ class AddOption extends React.Component {
 		);
 	}
 }
+
 
 class Option extends React.Component {
 	render() {
