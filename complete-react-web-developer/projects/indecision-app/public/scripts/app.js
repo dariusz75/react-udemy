@@ -8,49 +8,40 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Counter = function (_React$Component) {
-	_inherits(Counter, _React$Component);
+var VisibilityToggle = function (_React$Component) {
+	_inherits(VisibilityToggle, _React$Component);
 
-	function Counter(props) {
-		_classCallCheck(this, Counter);
+	function VisibilityToggle(props) {
+		_classCallCheck(this, VisibilityToggle);
 
-		var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (VisibilityToggle.__proto__ || Object.getPrototypeOf(VisibilityToggle)).call(this, props));
 
-		_this.handleAddOne = _this.handleAddOne.bind(_this);
-		_this.handleMinusOne = _this.handleMinusOne.bind(_this);
-		_this.handleReset = _this.handleReset.bind(_this);
+		_this.handleVisibilityTogle = _this.handleVisibilityTogle.bind(_this);
 		_this.state = {
-			count: 0
+			buttonText: 'Show Info',
+			info: 0
 		};
 		return _this;
 	}
 
-	_createClass(Counter, [{
-		key: 'handleAddOne',
-		value: function handleAddOne() {
-			this.setState(function (prevState) {
-				return {
-					count: prevState.count + 1
-				};
-			});
-		}
-	}, {
-		key: 'handleMinusOne',
-		value: function handleMinusOne() {
-			this.setState(function (prevState) {
-				return {
-					count: prevState.count - 1
-				};
-			});
-		}
-	}, {
-		key: 'handleReset',
-		value: function handleReset() {
-			this.setState(function () {
-				return {
-					count: 0
-				};
-			});
+	_createClass(VisibilityToggle, [{
+		key: 'handleVisibilityTogle',
+		value: function handleVisibilityTogle() {
+			if (this.state.buttonText === 'Show Info') {
+				this.setState(function () {
+					return {
+						buttonText: 'Hide Info',
+						info: 1
+					};
+				});
+			} else {
+				this.setState(function () {
+					return {
+						buttonText: 'Show Info',
+						info: 0
+					};
+				});
+			}
 		}
 	}, {
 		key: 'render',
@@ -61,60 +52,24 @@ var Counter = function (_React$Component) {
 				React.createElement(
 					'h1',
 					null,
-					'Count: ',
-					this.state.count
+					'Visibility Toggle'
 				),
 				React.createElement(
 					'button',
-					{ onClick: this.handleAddOne },
-					'+1'
+					{ onClick: this.handleVisibilityTogle },
+					this.state.buttonText
 				),
 				React.createElement(
-					'button',
-					{ onClick: this.handleMinusOne },
-					'-1'
-				),
-				React.createElement(
-					'button',
-					{ onClick: this.handleReset },
-					'Reset'
+					'h2',
+					null,
+					this.state.info === 0 ? '' : 'Info panel placed'
 				)
 			);
 		}
 	}]);
 
-	return Counter;
+	return VisibilityToggle;
 }(React.Component);
 
 var appRoot = document.getElementById('app');
-ReactDOM.render(React.createElement(Counter, null), appRoot);
-
-/*
-this.state - odpowiada za stan komponentu.
-
-Ponizej ustawiamy stan wlasciwosci count = 0. Jest to nasze ustawienie domyslne stanu komponentu.
-this.state = {
-			count: 0
-		};    
-Referujemy do niego za pomoca ponizszego kodu:
-<h1>Count: {this.state.count}</h1>
-
-Chcac zmienic wartosc renderowana przez komponent na ekranie, musimy zmienic stan komponentu.
-Niestety nie wystarczy jedynie zmiana wartosci wlasciwosci count.
-Musimy posluzyc sie metoda setState()
-W naszym przypadku wyglada ona nastepujaco:
-
-this.setState((prevState) => {
-			return {
-				count: prevState.count + 1
-			};
-		});
-
-Gdzie:
-setState() podiera argument prevState ktory pochodzi ze specyfikacji Reacta i jak nazwa wskazuje, odpowiada za posiadanie poprzedniego stanu komponentu
-Nastepnie funkcja zwraca poprzednia wartosc wlasciwosci count powiekszona o 1
-
-
-
-		
-*/
+ReactDOM.render(React.createElement(VisibilityToggle, null), appRoot);
