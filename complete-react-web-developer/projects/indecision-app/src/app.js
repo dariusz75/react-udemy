@@ -29,16 +29,26 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+	
+	handlePick() {
+		console.log('Done!');
+	}
+
 	render() {
 		return (
 			<div>
-				<button>Tasks to do</button>
+				<button onClick={this.handlePick}>Tasks to do</button>
 			</div>
 		);
 	}
 }
 
 class Options extends React.Component {
+
+	handleRemoveAll() {
+		console.log('Remove all!');
+	}
+
 	render() {
 		console.log(this.props);
 		return (
@@ -49,7 +59,7 @@ class Options extends React.Component {
 						return (<p key={optionFromArray}>{optionFromArray}</p>);
 					})
 				}
-				
+				<button onClick={this.handleRemoveAll}>Romove All</button>
 			</div>
 		);
 	}
