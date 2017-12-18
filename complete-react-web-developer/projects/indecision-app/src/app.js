@@ -1,15 +1,38 @@
-
 class IndecisionApp extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+		this.handlePick = this.handlePick.bind(this);
+		this.state = {
+			options: ['Option 1', 'Option 2', 'Option 3']
+		};
+	}
+
+	handleDeleteOptions() {
+		this.setState(() => {
+			return {
+				options: []
+			};
+		});
+	}
+
+	handlePick() {
+		const randomNum = Math.floor(Math.random() * this.state.options.length);
+		const option = this.state.options[randomNum];
+		
+		console.log(option);
+	}
+
 	render() {
 		const title = 'Temp title';
 		const subtitle = 'Temp subtitle';
-		const options = ['Option 1', 'Option 2', 'Option 3'];
 
 		return (
 			<div>
 				<Header title={title} subtitle={subtitle}/>
-				<Action />
-				<Options  options={options}/>
+				<Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}/>
+				<Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions}/>
 				<AddOption />
 			</div>
 		);
@@ -18,7 +41,6 @@ class IndecisionApp extends React.Component {
 
 class Header extends React.Component {
 	render() {
-		console.log(this.props);
 		return (
 			<div>
 				<h1>{this.props.title}</h1>
@@ -29,15 +51,11 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
-	
-	handlePick() {
-		console.log('Done!');
-	}
 
 	render() {
 		return (
 			<div>
-				<button onClick={this.handlePick}>Tasks to do</button>
+				<button onClick={this.props.handlePick} disabled={!this.props.hasOptions}>Tasks to do</button>
 			</div>
 		);
 	}
@@ -45,12 +63,7 @@ class Action extends React.Component {
 
 class Options extends React.Component {
 
-	handleRemoveAll() {
-		console.log('Remove all!');
-	}
-
 	render() {
-		console.log(this.props);
 		return (
 			<div>
 				<h3>Options component here - {this.props.options.length} options avaliable.</h3>
@@ -59,7 +72,7 @@ class Options extends React.Component {
 						return (<p key={optionFromArray}>{optionFromArray}</p>);
 					})
 				}
-				<button onClick={this.handleRemoveAll}>Romove All</button>
+				<button onClick={this.props.handleDeleteOptions}>Romove All</button>
 			</div>
 		);
 	}
