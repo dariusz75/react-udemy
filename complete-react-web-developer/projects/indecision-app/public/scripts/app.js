@@ -18,8 +18,7 @@ var VisibilityToggle = function (_React$Component) {
 
 		_this.handleVisibilityTogle = _this.handleVisibilityTogle.bind(_this);
 		_this.state = {
-			buttonText: 'Show Info',
-			info: 0
+			visibility: false
 		};
 		return _this;
 	}
@@ -27,21 +26,11 @@ var VisibilityToggle = function (_React$Component) {
 	_createClass(VisibilityToggle, [{
 		key: 'handleVisibilityTogle',
 		value: function handleVisibilityTogle() {
-			if (this.state.buttonText === 'Show Info') {
-				this.setState(function () {
-					return {
-						buttonText: 'Hide Info',
-						info: 1
-					};
-				});
-			} else {
-				this.setState(function () {
-					return {
-						buttonText: 'Show Info',
-						info: 0
-					};
-				});
-			}
+			this.setState(function (prevState) {
+				return {
+					visibility: !prevState.visibility
+				};
+			});
 		}
 	}, {
 		key: 'render',
@@ -57,12 +46,12 @@ var VisibilityToggle = function (_React$Component) {
 				React.createElement(
 					'button',
 					{ onClick: this.handleVisibilityTogle },
-					this.state.buttonText
+					this.state.visibility ? 'Hide Info' : 'Show Info'
 				),
-				React.createElement(
+				this.state.visibility && React.createElement(
 					'h2',
 					null,
-					this.state.info === 0 ? '' : 'Info panel placed'
+					'Info panel placed'
 				)
 			);
 		}

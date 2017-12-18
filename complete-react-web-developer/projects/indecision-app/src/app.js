@@ -5,27 +5,16 @@ class VisibilityToggle extends React.Component {
 		super(props);
 		this.handleVisibilityTogle = this.handleVisibilityTogle.bind(this);
 		this.state = {
-			buttonText: 'Show Info',
-			info: 0
+			visibility: false
 		};
 	}
 
 	handleVisibilityTogle() {
-		if (this.state.buttonText === 'Show Info') {
-			this.setState(() => {
+		this.setState((prevState) => {
 			return {
-				buttonText: 'Hide Info',
-				info: 1
+				visibility: !prevState.visibility
 			};
 		});
-		} else {
-			this.setState(() => {
-			return {
-				buttonText: 'Show Info',
-				info: 0
-			};
-		});
-		}
 		
 	}	
 
@@ -33,8 +22,8 @@ class VisibilityToggle extends React.Component {
 		return (
 			<div>
 				<h1>Visibility Toggle</h1>
-				<button onClick={this.handleVisibilityTogle}>{this.state.buttonText}</button>
-				<h2 >{this.state.info === 0 ? '': 'Info panel placed' }</h2>
+				<button onClick={this.handleVisibilityTogle}>{this.state.visibility ? 'Hide Info' : 'Show Info'}</button>
+				{this.state.visibility && ( <h2>Info panel placed</h2> )}
 			</div>
 			);
 	}
