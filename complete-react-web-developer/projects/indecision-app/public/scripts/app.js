@@ -17,25 +17,40 @@ var Counter = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
 
 		_this.handleAddOne = _this.handleAddOne.bind(_this);
-		_this.handleMinusOne = _this.handleAddOne.bind(_this);
-		_this.handleReset = _this.handleAddOne.bind(_this);
+		_this.handleMinusOne = _this.handleMinusOne.bind(_this);
+		_this.handleReset = _this.handleReset.bind(_this);
+		_this.state = {
+			count: 0
+		};
 		return _this;
 	}
 
 	_createClass(Counter, [{
 		key: 'handleAddOne',
 		value: function handleAddOne() {
-			console.log('Add 1');
+			this.setState(function (prevState) {
+				return {
+					count: prevState.count + 1
+				};
+			});
 		}
 	}, {
 		key: 'handleMinusOne',
 		value: function handleMinusOne() {
-			console.log('Minus 1');
+			this.setState(function (prevState) {
+				return {
+					count: prevState.count - 1
+				};
+			});
 		}
 	}, {
 		key: 'handleReset',
 		value: function handleReset() {
-			console.log('Reset');
+			this.setState(function () {
+				return {
+					count: 0
+				};
+			});
 		}
 	}, {
 		key: 'render',
@@ -46,7 +61,8 @@ var Counter = function (_React$Component) {
 				React.createElement(
 					'h1',
 					null,
-					'Count: '
+					'Count: ',
+					this.state.count
 				),
 				React.createElement(
 					'button',
@@ -72,3 +88,33 @@ var Counter = function (_React$Component) {
 
 var appRoot = document.getElementById('app');
 ReactDOM.render(React.createElement(Counter, null), appRoot);
+
+/*
+this.state - odpowiada za stan komponentu.
+
+Ponizej ustawiamy stan wlasciwosci count = 0. Jest to nasze ustawienie domyslne stanu komponentu.
+this.state = {
+			count: 0
+		};    
+Referujemy do niego za pomoca ponizszego kodu:
+<h1>Count: {this.state.count}</h1>
+
+Chcac zmienic wartosc renderowana przez komponent na ekranie, musimy zmienic stan komponentu.
+Niestety nie wystarczy jedynie zmiana wartosci wlasciwosci count.
+Musimy posluzyc sie metoda setState()
+W naszym przypadku wyglada ona nastepujaco:
+
+this.setState((prevState) => {
+			return {
+				count: prevState.count + 1
+			};
+		});
+
+Gdzie:
+setState() podiera argument prevState ktory pochodzi ze specyfikacji Reacta i jak nazwa wskazuje, odpowiada za posiadanie poprzedniego stanu komponentu
+Nastepnie funkcja zwraca poprzednia wartosc wlasciwosci count powiekszona o 1
+
+
+
+		
+*/
