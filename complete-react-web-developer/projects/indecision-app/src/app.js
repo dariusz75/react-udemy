@@ -40,9 +40,10 @@ class Action extends React.Component {
 
 class Options extends React.Component {
 	render() {
+		console.log(this.props);
 		return (
 			<div>
-				<h3>Options component here{this.props.options.length}</h3>
+				<h3>Options component here - {this.props.options.length} options avaliable.</h3>
 				{
 					this.props.options.map(function(optionFromArray){
 						return (<p key={optionFromArray}>{optionFromArray}</p>);

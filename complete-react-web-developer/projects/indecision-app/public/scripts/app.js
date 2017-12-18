@@ -110,14 +110,16 @@ var Options = function (_React$Component4) {
 	_createClass(Options, [{
 		key: 'render',
 		value: function render() {
+			console.log(this.props);
 			return React.createElement(
 				'div',
 				null,
 				React.createElement(
 					'h3',
 					null,
-					'Options component here',
-					this.props.options.length
+					'Options component here - ',
+					this.props.options.length,
+					' options avaliable.'
 				),
 				this.props.options.map(function (optionFromArray) {
 					return React.createElement(
