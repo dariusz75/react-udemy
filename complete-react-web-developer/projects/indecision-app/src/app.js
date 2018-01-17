@@ -41,7 +41,7 @@ var templateTwo = (
 var templateThree = (
 	<div>
 		<h1>{user.name}</h1>
-		{user.age && <p>Age: {user.age}</p>}
+		{user.age >2 && <p>Age: {user.age}</p>}
 		{getLocationTwo(user.location)}
 	</div>
 );
@@ -85,4 +85,4 @@ var challengeTemplate = (
 
 
 var appRoot = document.getElementById('app');
-ReactDOM.render(challengeTemplate, appRoot);
+ReactDOM.render(templateThree, appRoot);
