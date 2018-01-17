@@ -1,5 +1,5 @@
 {
-  "name": "indecision-app",
+  "name": "pwd",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Andrew Mead",
@@ -7,5 +7,9 @@
   "dependencies": {
     "babel-preset-env": "1.5.2",
     "babel-preset-react": "6.24.1"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "description": ""
 }
