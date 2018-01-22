@@ -37,10 +37,6 @@ const render = () => {
 			<p>{app.options.length > 0 ? 'Number of elements entered:' : 'No elements in array'}</p>
 			<p>{app.options.length}</p>
 			<button onClick={onRemoveAll}>Remove All</button>
-			<ol>
-				<li>Item one</li>
-				<li>Item two</li>
-			</ol>
 			<form onSubmit={onFormSubmit}>
 				<input type="text" name="option"/>
 				<button>Add Option</button>

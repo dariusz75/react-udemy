@@ -54,20 +54,6 @@ var render = function render() {
 			'Remove All'
 		),
 		React.createElement(
-			'ol',
-			null,
-			React.createElement(
-				'li',
-				null,
-				'Item one'
-			),
-			React.createElement(
-				'li',
-				null,
-				'Item two'
-			)
-		),
-		React.createElement(
 			'form',
 			{ onSubmit: onFormSubmit },
 			React.createElement('input', { type: 'text', name: 'option' }),
