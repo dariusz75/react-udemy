@@ -72,7 +72,7 @@ var templateThree = React.createElement(
 		null,
 		user.name
 	),
-	user.age > 2 && React.createElement(
+	user.age > 18 && React.createElement(
 		'p',
 		null,
 		'Age: ',
@@ -142,4 +142,4 @@ var challengeTemplate = React.createElement(
 );
 
 var appRoot = document.getElementById('app');
-ReactDOM.render(templateThree, appRoot);
+ReactDOM.render(challengeTemplate, appRoot);
