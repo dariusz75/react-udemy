@@ -9,11 +9,6 @@ var app = {
 	infoDiv: []
 };
 
-var onToggleButton = function onToggleButton() {
-	console.log('test');
-	render();
-};
-
 var placeInfo = function placeInfo() {
 	if (app.infoDiv.length === 0) {
 		app.infoDiv.push(app.infoText[0]);
@@ -38,7 +33,7 @@ var render = function render() {
 		),
 		React.createElement(
 			'button',
-			{ disabled: false, onClick: placeInfo },
+			{ onClick: placeInfo },
 			app.infoDiv.length > 0 ? 'Hide Info' : 'Show Info'
 		),
 		React.createElement(

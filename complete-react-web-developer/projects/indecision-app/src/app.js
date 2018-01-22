@@ -9,11 +9,6 @@ const app = {
 };
 
 
-const onToggleButton = () => {
-	console.log('test');
-	render();
-}
-
 const placeInfo = () => {
 	if(app.infoDiv.length === 0) {
 		app.infoDiv.push(app.infoText[0]);
@@ -34,7 +29,7 @@ const render = () => {
 	const template = (
 		<div>
 			<h1>{app.title}</h1>
-			<button disabled={false} onClick={placeInfo}>{app.infoDiv.length > 0 ? 'Hide Info' : 'Show Info'}</button>
+			<button onClick={placeInfo}>{app.infoDiv.length > 0 ? 'Hide Info' : 'Show Info'}</button>
 			<p>{app.infoDiv}</p>
 		</div>
 	);
