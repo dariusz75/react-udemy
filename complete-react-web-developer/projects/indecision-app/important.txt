@@ -3,3 +3,6 @@ live-server public
 
 to run babel
 babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+
+ostatnia lekcja Build It: Visibility Toggle
+https://www.udemy.com/react-2nd-edition/learn/v4/t/lecture/7707658?start=300
