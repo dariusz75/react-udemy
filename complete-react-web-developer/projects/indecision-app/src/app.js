@@ -85,9 +85,11 @@ Kilka uwag odnosnie klas
 
 class Student extends Person - extends Person odpowiada za dziedziczenie z klasy Person
 
-constructor(name, age, major) - w konstruktorze musimy podac ktore wlasciwosci obiektu klasy dziedziczymy. W naszym przypadku sa to name i age. major to nowoprzypisana wlasciwosc do obiektu klasy Person.
+constructor(name, age, major) - w konstruktorze musimy podac ktore wlasciwosci obiektu klasy dziedziczymy. 
+W naszym przypadku sa to name i age. major to nowoprzypisana wlasciwosc do obiektu klasy Person.
 
-super(name, age); - Aby moc korzystac z dziedziczenia musimy wykonac jeszcze jedna operacje, uzyc metody super ktora udostepni nam wskazane wlasciwosci obiektu klasy Person.
+super(name, age); - Aby moc korzystac z dziedziczenia musimy wykonac jeszcze jedna operacje, 
+uzyc metody super ktora udostepni nam wskazane wlasciwosci obiektu klasy Person.
 
 
 
@@ -109,15 +111,19 @@ getDescription() {
 			return studentDescription;
 	}
 
-Metoda getDescription klasy Student dziedziczy z klasy rodzica, czyli z klasy Person automatycznie poniewaz klasa Student dziedziczy z Person.
-let studentDescription = super.getDescription(); - Aby uzyskac dostep do metody getDescription klasy Person uzywamy metody super() i przypisujemy wartosc do zmiennej let studentDescription.
-W ten sposob metoda getDescription() klasy Student zwraca dokladnie te sama wartosc ktora zwraca metoda getDescription() klasy Person.
+Metoda getDescription klasy Student dziedziczy z klasy rodzica, czyli z klasy Person automatycznie 
+poniewaz klasa Student dziedziczy z Person.
+let studentDescription = super.getDescription(); - Aby uzyskac dostep do metody getDescription klasy Person 
+uzywamy metody super() i przypisujemy wartosc do zmiennej let studentDescription.
+W ten sposob metoda getDescription() klasy Student zwraca dokladnie te sama wartosc 
+ktora zwraca metoda getDescription() klasy Person.
 
 
 if (this.hasMajor()) {
 			studentDescription = studentDescription + ` and he is ${this.major} Developer.`
 		}
 
-W przypadku kiedy obiekt Student posiada wlasciwosc major ktora posiada wartosc, chcemy aby nasza zmienna studentDescription zostala zmodywikowana w sposob podany powyzej.
+W przypadku kiedy obiekt Student posiada wlasciwosc major ktora posiada wartosc, 
+chcemy aby nasza zmienna studentDescription zostala zmodywikowana w sposob podany powyzej.
 
 */
