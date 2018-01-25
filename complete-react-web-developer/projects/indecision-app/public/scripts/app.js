@@ -20,9 +20,10 @@ var IndecisionApp = function (_React$Component) {
 	_createClass(IndecisionApp, [{
 		key: 'render',
 		value: function render() {
-			var title = 'Temp title';
-			var subtitle = 'Temp subtitle';
+			var title = 'Header title from props';
+			var subtitle = 'Header subtitle from props';
 			var options = ['Option 1', 'Option 2', 'Option 3'];
+			var optionsB = ['OptionB 1', 'OptionB 2', 'OptionB 3'];
 
 			return React.createElement(
 				'div',
@@ -30,7 +31,7 @@ var IndecisionApp = function (_React$Component) {
 				React.createElement(Header, { title: title, subtitle: subtitle }),
 				React.createElement(Action, null),
 				React.createElement(Options, { options: options }),
-				React.createElement(AddOption, null)
+				React.createElement(AddOption, { optionsB: optionsB })
 			);
 		}
 	}]);
@@ -57,10 +58,15 @@ var Header = function (_React$Component2) {
 				React.createElement(
 					'h1',
 					null,
+					'Header Component'
+				),
+				React.createElement(
+					'p',
+					null,
 					this.props.title
 				),
 				React.createElement(
-					'h2',
+					'p',
 					null,
 					this.props.subtitle
 				)
@@ -147,6 +153,7 @@ var AddOption = function (_React$Component5) {
 	_createClass(AddOption, [{
 		key: 'render',
 		value: function render() {
+			console.log(this.props);
 			return React.createElement(
 				'div',
 				null,
@@ -154,6 +161,11 @@ var AddOption = function (_React$Component5) {
 					'h3',
 					null,
 					'Add Option component here'
+				),
+				React.createElement(
+					'p',
+					null,
+					this.props.optionsB
 				)
 			);
 		}

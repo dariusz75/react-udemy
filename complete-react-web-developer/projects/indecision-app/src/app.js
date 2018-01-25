@@ -1,16 +1,17 @@
 
 class IndecisionApp extends React.Component {
 	render() {
-		const title = 'Temp title';
-		const subtitle = 'Temp subtitle';
+		const title = 'Header title from props';
+		const subtitle = 'Header subtitle from props';
 		const options = ['Option 1', 'Option 2', 'Option 3'];
+		const optionsB = ['OptionB 1', 'OptionB 2', 'OptionB 3'];
 
 		return (
 			<div>
 				<Header title={title} subtitle={subtitle}/>
 				<Action />
 				<Options  options={options}/>
-				<AddOption />
+				<AddOption optionsB={optionsB}/>
 			</div>
 		);
 	} 
@@ -21,12 +22,15 @@ class Header extends React.Component {
 		console.log(this.props);
 		return (
 			<div>
-				<h1>{this.props.title}</h1>
-				<h2>{this.props.subtitle}</h2>
+				<h1>Header Component</h1>
+				<p>{this.props.title}</p>
+				<p>{this.props.subtitle}</p>
 			</div>
 		);
 	} 
 }
+
+
 
 class Action extends React.Component {
 	render() {
@@ -46,7 +50,9 @@ class Options extends React.Component {
 				<h3>Options component here - {this.props.options.length} options avaliable.</h3>
 				{
 					this.props.options.map(function(optionFromArray){
-						return (<p key={optionFromArray}>{optionFromArray}</p>);
+						return (
+							<p key={optionFromArray}>{optionFromArray}</p>
+						);
 					})
 				}
 				
@@ -59,9 +65,11 @@ class Options extends React.Component {
 
 class AddOption extends React.Component {
 	render() {
+		console.log(this.props);
 		return (
 			<div>
 				<h3>Add Option component here</h3>
+				<p>{this.props.optionsB}</p>
 			</div>
 		);
 	}
