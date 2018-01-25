@@ -134,11 +134,11 @@ Kilka uwag odnosnie klas
 
 class Student extends Person - extends Person odpowiada za dziedziczenie z klasy Person
 
-constructor(name, age, major) - w konstruktorze musimy podac ktore wlasciwosci obiektu klasy dziedziczymy. 
-W naszym przypadku sa to name i age. major to nowoprzypisana wlasciwosc do obiektu klasy Person.
+constructor(name, age, major) - w konstruktorze musimy podac ktore wlasciwosci obiektu klasy rodzica dziedziczymy. 
+W naszym przypadku sa to name i age. major to nowoprzypisana wlasciwosc do obiektu klasy Student.
 
 super(name, age); - Aby moc korzystac z dziedziczenia musimy wykonac jeszcze jedna operacje, 
-uzyc metody super ktora udostepni nam wskazane wlasciwosci obiektu klasy Person.
+uzyc metody super ktora udostepni nam wskazane wlasciwosci obiektu klasy rodzica, w naszym wypadku klasy Person.
 
 
 
@@ -161,7 +161,7 @@ getDescription() {
 	}
 
 Metoda getDescription klasy Student dziedziczy z klasy rodzica, czyli z klasy Person automatycznie 
-poniewaz klasa Student dziedziczy z Person.
+poniewaz klasa Student dziedziczy z klasy Person.
 let studentDescription = super.getDescription(); - Aby uzyskac dostep do metody getDescription klasy Person 
 uzywamy metody super() i przypisujemy wartosc do zmiennej let studentDescription.
 W ten sposob metoda getDescription() klasy Student zwraca dokladnie te sama wartosc 
