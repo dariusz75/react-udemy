@@ -1,9 +1,30 @@
-class Component1 extends React.Component {
+class IndecisionApp extends React.Component {
 	render() {
+	
+		let candidateFirstName = 'George';
+		let candidatesurname = 'Smith';
+		let testResult = 'passed';
+
 		return (
 			<div>
-				<h1>Component 1</h1>
-				<h3>{this.props.subtitle1}</h3>
+				<Component1 firstName={candidateFirstName}/>
+				<Component2 surname={candidatesurname}/>
+				<Component3 status={'Student'}/>
+				<TestComponent test={testResult}/>
+				<FinalMessage firstName={candidateFirstName} surname={candidatesurname} status={'Student'} test={testResult}/>
+			</div>
+		);
+	} 
+}
+
+
+class Component1 extends React.Component {
+	render() {
+		
+		return (
+			<div>
+				<h2>First Name: {this.props.firstName}</h2>
+				<h3>{this.props.test}</h3>
 			</div>
 		);
 	} 
@@ -14,8 +35,7 @@ class Component2 extends React.Component {
 	render() {
 		return (
 			<div>
-				<h1>Component 2</h1>
-				<h3>{this.props.subtitle2}</h3>
+				<h2>Surname: {this.props.surname}</h2>
 			</div>
 		);
 	}
@@ -26,34 +46,34 @@ class Component3 extends React.Component {
 	render() {
 		return (
 			<div>
-				<h1>Component 3</h1>
-				<h3>Hello {this.props.personName}!</h3>
+				<h2>Status: {this.props.status}</h2>
 			</div>
 		);
 	}
 }
 
-
-class IndecisionApp extends React.Component {
+class TestComponent extends React.Component {
 	render() {
-		let subtitle2 = 'Subtitle 2';
-		let name = 'Mark'
-
 		return (
-			<div>
-				<Component1 subtitle1='Subtitle 1'/>
-				<Component2 subtitle2={subtitle2}/>
-				<Component3 personName={name}/>
-			</div>
+			<h2>Test result: {this.props.test}</h2>
 		);
-	} 
+	}
 }
+
+class FinalMessage extends React.Component {
+	render() {
+		return (
+			<p>{this.props.status} {this.props.firstName} {this.props.surname} {this.props.test} the exam.'</p>
+		);
+	}
+}
+
 
 const appRoot = document.getElementById('app');
 ReactDOM.render(<IndecisionApp />, appRoot);
 
 /*
-Właściwości (props) są używane do przekazywania dodatkowych danych do komponentów.
+Właściwości (props) są używane do przekazywania danych do komponentów.
 Właściwości są definiowane jako atrybuty elementów HTML.
 
 */

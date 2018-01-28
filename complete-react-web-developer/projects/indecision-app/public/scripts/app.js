@@ -8,8 +8,40 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Component1 = function (_React$Component) {
-	_inherits(Component1, _React$Component);
+var IndecisionApp = function (_React$Component) {
+	_inherits(IndecisionApp, _React$Component);
+
+	function IndecisionApp() {
+		_classCallCheck(this, IndecisionApp);
+
+		return _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).apply(this, arguments));
+	}
+
+	_createClass(IndecisionApp, [{
+		key: 'render',
+		value: function render() {
+
+			var candidateFirstName = 'George';
+			var candidatesurname = 'Smith';
+			var testResult = 'passed';
+
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(Component1, { firstName: candidateFirstName }),
+				React.createElement(Component2, { surname: candidatesurname }),
+				React.createElement(Component3, { status: 'Student' }),
+				React.createElement(TestComponent, { test: testResult }),
+				React.createElement(FinalMessage, { firstName: candidateFirstName, surname: candidatesurname, status: 'Student', test: testResult })
+			);
+		}
+	}]);
+
+	return IndecisionApp;
+}(React.Component);
+
+var Component1 = function (_React$Component2) {
+	_inherits(Component1, _React$Component2);
 
 	function Component1() {
 		_classCallCheck(this, Component1);
@@ -20,18 +52,20 @@ var Component1 = function (_React$Component) {
 	_createClass(Component1, [{
 		key: 'render',
 		value: function render() {
+
 			return React.createElement(
 				'div',
 				null,
 				React.createElement(
-					'h1',
+					'h2',
 					null,
-					'Component 1'
+					'First Name: ',
+					this.props.firstName
 				),
 				React.createElement(
 					'h3',
 					null,
-					this.props.subtitle1
+					this.props.test
 				)
 			);
 		}
@@ -40,8 +74,8 @@ var Component1 = function (_React$Component) {
 	return Component1;
 }(React.Component);
 
-var Component2 = function (_React$Component2) {
-	_inherits(Component2, _React$Component2);
+var Component2 = function (_React$Component3) {
+	_inherits(Component2, _React$Component3);
 
 	function Component2() {
 		_classCallCheck(this, Component2);
@@ -56,14 +90,10 @@ var Component2 = function (_React$Component2) {
 				'div',
 				null,
 				React.createElement(
-					'h1',
+					'h2',
 					null,
-					'Component 2'
-				),
-				React.createElement(
-					'h3',
-					null,
-					this.props.subtitle2
+					'Surname: ',
+					this.props.surname
 				)
 			);
 		}
@@ -72,8 +102,8 @@ var Component2 = function (_React$Component2) {
 	return Component2;
 }(React.Component);
 
-var Component3 = function (_React$Component3) {
-	_inherits(Component3, _React$Component3);
+var Component3 = function (_React$Component4) {
+	_inherits(Component3, _React$Component4);
 
 	function Component3() {
 		_classCallCheck(this, Component3);
@@ -88,16 +118,10 @@ var Component3 = function (_React$Component3) {
 				'div',
 				null,
 				React.createElement(
-					'h1',
+					'h2',
 					null,
-					'Component 3'
-				),
-				React.createElement(
-					'h3',
-					null,
-					'Hello ',
-					this.props.personName,
-					'!'
+					'Status: ',
+					this.props.status
 				)
 			);
 		}
@@ -106,39 +130,65 @@ var Component3 = function (_React$Component3) {
 	return Component3;
 }(React.Component);
 
-var IndecisionApp = function (_React$Component4) {
-	_inherits(IndecisionApp, _React$Component4);
+var TestComponent = function (_React$Component5) {
+	_inherits(TestComponent, _React$Component5);
 
-	function IndecisionApp() {
-		_classCallCheck(this, IndecisionApp);
+	function TestComponent() {
+		_classCallCheck(this, TestComponent);
 
-		return _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).apply(this, arguments));
+		return _possibleConstructorReturn(this, (TestComponent.__proto__ || Object.getPrototypeOf(TestComponent)).apply(this, arguments));
 	}
 
-	_createClass(IndecisionApp, [{
+	_createClass(TestComponent, [{
 		key: 'render',
 		value: function render() {
-			var subtitle2 = 'Subtitle 2';
-			var name = 'Mark';
-
 			return React.createElement(
-				'div',
+				'h2',
 				null,
-				React.createElement(Component1, { subtitle1: 'Subtitle 1' }),
-				React.createElement(Component2, { subtitle2: subtitle2 }),
-				React.createElement(Component3, { personName: name })
+				'Test result: ',
+				this.props.test
 			);
 		}
 	}]);
 
-	return IndecisionApp;
+	return TestComponent;
+}(React.Component);
+
+var FinalMessage = function (_React$Component6) {
+	_inherits(FinalMessage, _React$Component6);
+
+	function FinalMessage() {
+		_classCallCheck(this, FinalMessage);
+
+		return _possibleConstructorReturn(this, (FinalMessage.__proto__ || Object.getPrototypeOf(FinalMessage)).apply(this, arguments));
+	}
+
+	_createClass(FinalMessage, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'p',
+				null,
+				this.props.status,
+				' ',
+				this.props.firstName,
+				' ',
+				this.props.surname,
+				' ',
+				this.props.test,
+				' the exam.\''
+			);
+		}
+	}]);
+
+	return FinalMessage;
 }(React.Component);
 
 var appRoot = document.getElementById('app');
 ReactDOM.render(React.createElement(IndecisionApp, null), appRoot);
 
 /*
-Właściwości (props) są używane do przekazywania dodatkowych danych do komponentów.
+Właściwości (props) są używane do przekazywania danych do komponentów.
 Właściwości są definiowane jako atrybuty elementów HTML.
 
 */
