@@ -24,6 +24,14 @@ var IndecisionApp = function (_React$Component) {
 			var candidateFirstName = 'George';
 			var candidatesurname = 'Smith';
 			var testResult = 'passed';
+			var opionsList = ['Option 1', 'Option 2', 'Option 3'];
+			var liElement = opionsList.map(function (option) {
+				return React.createElement(
+					'li',
+					{ key: option },
+					option
+				);
+			});
 
 			return React.createElement(
 				'div',
@@ -32,7 +40,8 @@ var IndecisionApp = function (_React$Component) {
 				React.createElement(Component2, { surname: candidatesurname }),
 				React.createElement(Component3, { status: 'Student' }),
 				React.createElement(TestComponent, { test: testResult }),
-				React.createElement(FinalMessage, { firstName: candidateFirstName, surname: candidatesurname, status: 'Student', test: testResult })
+				React.createElement(FinalMessage, { firstName: candidateFirstName, surname: candidatesurname, status: 'Student', test: testResult }),
+				React.createElement(Options, { liElement: liElement })
 			);
 		}
 	}]);
@@ -182,6 +191,29 @@ var FinalMessage = function (_React$Component6) {
 	}]);
 
 	return FinalMessage;
+}(React.Component);
+
+var Options = function (_React$Component7) {
+	_inherits(Options, _React$Component7);
+
+	function Options() {
+		_classCallCheck(this, Options);
+
+		return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+	}
+
+	_createClass(Options, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'ol',
+				null,
+				this.props.liElement
+			);
+		}
+	}]);
+
+	return Options;
 }(React.Component);
 
 var appRoot = document.getElementById('app');
