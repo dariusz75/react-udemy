@@ -20,14 +20,14 @@ var IndecisionApp = function (_React$Component) {
 	_createClass(IndecisionApp, [{
 		key: 'render',
 		value: function render() {
-			var title = 'Temp title';
-			var subtitle = 'Temp subtitle';
+			var siteTitle = 'Events and Methods';
+			var siteSubtitle = 'Please check the console.';
 			var options = ['Option 1', 'Option 2', 'Option 3'];
 
 			return React.createElement(
 				'div',
 				null,
-				React.createElement(Header, { title: title, subtitle: subtitle }),
+				React.createElement(Header, { title: siteTitle, subtitle: siteSubtitle }),
 				React.createElement(Action, null),
 				React.createElement(Options, { options: options }),
 				React.createElement(AddOption, null)
@@ -50,7 +50,6 @@ var Header = function (_React$Component2) {
 	_createClass(Header, [{
 		key: 'render',
 		value: function render() {
-			console.log(this.props);
 			return React.createElement(
 				'div',
 				null,
@@ -83,7 +82,7 @@ var Action = function (_React$Component3) {
 	_createClass(Action, [{
 		key: 'handlePick',
 		value: function handlePick() {
-			console.log('Done!');
+			console.log('Task!');
 		}
 	}, {
 		key: 'render',
@@ -168,6 +167,8 @@ var AddOption = function (_React$Component5) {
 
 			if (option) {
 				console.log('option!');
+			} else {
+				console.log('Please enter a value');
 			}
 		}
 	}, {

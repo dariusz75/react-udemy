@@ -1,13 +1,13 @@
 
 class IndecisionApp extends React.Component {
 	render() {
-		const title = 'Temp title';
-		const subtitle = 'Temp subtitle';
+		const siteTitle = 'Events and Methods';
+		const siteSubtitle = 'Please check the console.';
 		const options = ['Option 1', 'Option 2', 'Option 3'];
 
 		return (
 			<div>
-				<Header title={title} subtitle={subtitle}/>
+				<Header title={siteTitle} subtitle={siteSubtitle}/>
 				<Action />
 				<Options  options={options}/>
 				<AddOption />
@@ -18,7 +18,6 @@ class IndecisionApp extends React.Component {
 
 class Header extends React.Component {
 	render() {
-		console.log(this.props);
 		return (
 			<div>
 				<h1>{this.props.title}</h1>
@@ -31,7 +30,7 @@ class Header extends React.Component {
 class Action extends React.Component {
 	
 	handlePick() {
-		console.log('Done!');
+		console.log('Task!');
 	}
 
 	render() {
@@ -76,6 +75,8 @@ class AddOption extends React.Component {
 
 		if (option) {
 			console.log('option!');
+		} else {
+			console.log('Please enter a value');
 		}
 	};
 
