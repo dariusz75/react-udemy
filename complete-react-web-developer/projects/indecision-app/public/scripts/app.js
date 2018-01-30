@@ -17,8 +17,8 @@ var Counter = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
 
 		_this.handleAddOne = _this.handleAddOne.bind(_this);
-		_this.handleMinusOne = _this.handleAddOne.bind(_this);
-		_this.handleReset = _this.handleAddOne.bind(_this);
+		_this.handleMinusOne = _this.handleMinusOne.bind(_this);
+		_this.handleReset = _this.handleReset.bind(_this);
 		return _this;
 	}
 
