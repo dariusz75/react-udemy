@@ -5,14 +5,16 @@ class Counter extends React.Component {
 		this.handleMinusOne = this.handleMinusOne.bind(this);
 		this.handleReset = this.handleReset.bind(this);
 		this.state = {
-			count: 0
+			count: 0,
+			test: 'default state'
 		};
 	}
 
 	handleAddOne() {
 		this.setState((prevState) => {
 			return {
-				count: prevState.count + 1
+				count: prevState.count + 1,
+				test: prevState.test + ' state updated'
 			};
 		});
 	}
@@ -20,7 +22,8 @@ class Counter extends React.Component {
 	handleMinusOne() {
 		this.setState((prevState) => {
 			return {
-				count: prevState.count - 1
+				count: prevState.count - 1,
+				test: prevState.test + ' state updated'
 			};
 		});
 	}
@@ -28,7 +31,8 @@ class Counter extends React.Component {
 	handleReset() {
 		this.setState(() => {
 			return {
-				count: 0
+				count: 0,
+				test: 'updated'
 			};
 		});
 	}
@@ -38,6 +42,7 @@ class Counter extends React.Component {
 		return (
 			<div>
 				<h1>Count: {this.state.count}</h1>
+				<h1>Test: {this.state.test}</h1>
 				<button onClick={this.handleAddOne}>+1</button>
 				<button onClick={this.handleMinusOne}>-1</button>
 				<button onClick={this.handleReset}>Reset</button>
@@ -75,10 +80,7 @@ this.setState((prevState) => {
 		});
 
 Gdzie:
-setState() podiera argument prevState ktory pochodzi ze specyfikacji Reacta i jak nazwa wskazuje, odpowiada za posiadanie poprzedniego stanu komponentu
+setState() pobiera argument prevState ktory pochodzi ze specyfikacji Reacta 
+i jak nazwa wskazuje, odpowiada za posiadanie poprzedniego stanu komponentu.
 Nastepnie funkcja zwraca poprzednia wartosc wlasciwosci count powiekszona o 1
-
-
-
-		
 */
