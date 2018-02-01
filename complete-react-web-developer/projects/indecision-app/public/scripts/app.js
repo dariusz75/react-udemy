@@ -8,35 +8,77 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-/*
-W tym cwiczeniu wyrenderujemy wiadomosc na ekran oraz zbudujemy przycisk ze zmiennym tekstem, w zaleznosci od stanu wyswietlanej wiadomosci
-*/
+var IndecisionApp = function (_React$Component) {
+	_inherits(IndecisionApp, _React$Component);
 
-var VisibilityToggle = function (_React$Component) {
-	_inherits(VisibilityToggle, _React$Component);
+	function IndecisionApp(props) {
+		_classCallCheck(this, IndecisionApp);
 
-	function VisibilityToggle(props) {
-		_classCallCheck(this, VisibilityToggle);
+		var _this = _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).call(this, props));
 
-		var _this = _possibleConstructorReturn(this, (VisibilityToggle.__proto__ || Object.getPrototypeOf(VisibilityToggle)).call(this, props));
-
-		_this.handleVisibilityTogle = _this.handleVisibilityTogle.bind(_this);
+		_this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
+		_this.handlePick = _this.handlePick.bind(_this);
 		_this.state = {
-			visibility: false
+			options: ['Option 1', 'Option 2', 'Option 3']
 		};
 		return _this;
 	}
 
-	_createClass(VisibilityToggle, [{
-		key: 'handleVisibilityTogle',
-		value: function handleVisibilityTogle() {
-			this.setState(function (prevState) {
+	_createClass(IndecisionApp, [{
+		key: 'handleDeleteOptions',
+		value: function handleDeleteOptions() {
+			this.setState(function () {
 				return {
-					visibility: !prevState.visibility
+					options: []
 				};
 			});
 		}
 	}, {
+		key: 'handlePick',
+		value: function handlePick() {
+			var randomNum = Math.floor(Math.random() * this.state.options.length);
+			var option = this.state.options[randomNum];
+
+			console.log(randomNum);
+			console.log(option);
+		}
+	}, {
+		key: 'handleLogArray',
+		value: function handleLogArray() {
+			var optionsArray = this.state.options[randomNum];
+			console.log(this.state.options);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var pageTitle = 'Temp title';
+			var pageSubtitle = 'Temp subtitle';
+
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(Header, { title: pageTitle, subtitle: pageSubtitle }),
+				React.createElement(Action, { hasOptions: this.state.options.length > 0, handlePick: this.handlePick }),
+				React.createElement(Options, { options: this.state.options, handleDeleteOptions: this.handleDeleteOptions }),
+				React.createElement(AddOption, null),
+				React.createElement(LogArray, { handleLogArray: this.handleLogArray })
+			);
+		}
+	}]);
+
+	return IndecisionApp;
+}(React.Component);
+
+var Header = function (_React$Component2) {
+	_inherits(Header, _React$Component2);
+
+	function Header() {
+		_classCallCheck(this, Header);
+
+		return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+	}
+
+	_createClass(Header, [{
 		key: 'render',
 		value: function render() {
 			return React.createElement(
@@ -45,64 +87,202 @@ var VisibilityToggle = function (_React$Component) {
 				React.createElement(
 					'h1',
 					null,
-					'Visibility Toggle'
+					this.props.title
 				),
 				React.createElement(
-					'button',
-					{ onClick: this.handleVisibilityTogle },
-					this.state.visibility ? 'Hide Info' : 'Show Info'
-				),
-				this.state.visibility && React.createElement(
 					'h2',
 					null,
-					'Info panel placed'
+					this.props.subtitle
 				)
 			);
 		}
 	}]);
 
-	return VisibilityToggle;
+	return Header;
+}(React.Component);
+
+var Action = function (_React$Component3) {
+	_inherits(Action, _React$Component3);
+
+	function Action() {
+		_classCallCheck(this, Action);
+
+		return _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).apply(this, arguments));
+	}
+
+	_createClass(Action, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'button',
+					{ onClick: this.props.handlePick, disabled: !this.props.hasOptions },
+					'Tasks to do'
+				)
+			);
+		}
+	}]);
+
+	return Action;
+}(React.Component);
+
+var Options = function (_React$Component4) {
+	_inherits(Options, _React$Component4);
+
+	function Options() {
+		_classCallCheck(this, Options);
+
+		return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+	}
+
+	_createClass(Options, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'h3',
+					null,
+					'Options component here - ',
+					this.props.options.length,
+					' options avaliable.'
+				),
+				this.props.options.map(function (optionFromArray) {
+					return React.createElement(
+						'p',
+						{ key: optionFromArray },
+						optionFromArray
+					);
+				}),
+				React.createElement(
+					'button',
+					{ onClick: this.props.handleDeleteOptions },
+					'Romove All'
+				)
+			);
+		}
+	}]);
+
+	return Options;
+}(React.Component);
+
+var AddOption = function (_React$Component5) {
+	_inherits(AddOption, _React$Component5);
+
+	function AddOption() {
+		_classCallCheck(this, AddOption);
+
+		return _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).apply(this, arguments));
+	}
+
+	_createClass(AddOption, [{
+		key: 'handleAddOption',
+		value: function handleAddOption(e) {
+			e.preventDefault();
+
+			var option = e.target.elements.option.value.trim();
+
+			if (option) {
+				console.log('option!');
+			}
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'form',
+					{ onSubmit: this.handleAddOption },
+					React.createElement('input', { type: 'text', name: 'option' }),
+					React.createElement(
+						'button',
+						null,
+						'Add Option'
+					)
+				)
+			);
+		}
+	}]);
+
+	return AddOption;
+}(React.Component);
+
+var LogArray = function (_React$Component6) {
+	_inherits(LogArray, _React$Component6);
+
+	function LogArray() {
+		_classCallCheck(this, LogArray);
+
+		return _possibleConstructorReturn(this, (LogArray.__proto__ || Object.getPrototypeOf(LogArray)).apply(this, arguments));
+	}
+
+	_createClass(LogArray, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'button',
+				null,
+				'Console Log array'
+			);
+		}
+	}]);
+
+	return LogArray;
+}(React.Component);
+
+var Option = function (_React$Component7) {
+	_inherits(Option, _React$Component7);
+
+	function Option() {
+		_classCallCheck(this, Option);
+
+		return _possibleConstructorReturn(this, (Option.__proto__ || Object.getPrototypeOf(Option)).apply(this, arguments));
+	}
+
+	_createClass(Option, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'h3',
+					null,
+					'Option component here...'
+				)
+			);
+		}
+	}]);
+
+	return Option;
 }(React.Component);
 
 var appRoot = document.getElementById('app');
-ReactDOM.render(React.createElement(VisibilityToggle, null), appRoot);
+ReactDOM.render(React.createElement(IndecisionApp, null), appRoot);
 
 /*
-Zaczynamy od zadeklarowania metody, ktora nazwiemy handleVisibilityTogle.
-
-Nastepnie utworzymy konstruktor za pomoca ktorego bedziemy mieli dostep do wlasciwosci obiektu props 
-i bedziemy mogli nimi manipulowac.
-W naszym przypadku interesuje nas manipulowanie stanem, czyli interesuje nas dostep do wlasciwosci state 
-obiektu props.
-
-Nastepnie wlasciwosci state przypisujemy obiekt, ktorym w naszym przypadku jest 
-state = {
-			visibility: false
+Zaczynamy od zdefiniowania stanu options komponentu IndecisionApp przypisujac mu tablice z trzema wartosciami.
+this.state = {
+			options: ['Option 1', 'Option 2', 'Option 3']
 		};
 
-visibility: false - odpowiada za stan domyslny komponentu wyswietlajacego informacje na ekranie.
+Deklarujemy wlasciwosc options w komponencie IndecisionApp podczas 
+renderowania zagniezdzonego komponentu <Options />
+<Options options={this.state.options} />
+
+Zwracamy elementy tabliy stanu options w komponencie Options
+{
+	this.props.options.map(function(optionFromArray){
+		return (<p key={optionFromArray}>{optionFromArray}</p>);
+	})
+}
 
 
-Za wyswietlenie odpowiedniego tekstu w przycisku, odpowiada ponizszy kod:
-<button onClick={this.handleVisibilityTogle}>{this.state.visibility ? 'Hide Info' : 'Show Info'}</button>
-
-Gdzie:
-{this.state.visibility ? 'Hide Info' : 'Show Info'} - odpowiada za logike wyswietlania 
-
-Natomiast:
-onClick={this.handleVisibilityTogle} - odpowiada za wywolanie zdarzenia renderowania komponentu z tekstem, przez zmiane jego stanu.
-
-Za zmiane stanu odpowiada funkcja
-handleVisibilityTogle() {
-		this.setState((prevState) => {
-			return {
-				visibility: !prevState.visibility
-			};
-		});
-
-
-Aby calosc zadzialala, musimy wykonac ostatni krok.
-this.handleVisibilityTogle = this.handleVisibilityTogle.bind(this);
 
 
 */
