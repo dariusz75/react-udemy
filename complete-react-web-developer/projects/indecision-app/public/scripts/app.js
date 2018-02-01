@@ -18,6 +18,7 @@ var IndecisionApp = function (_React$Component) {
 
 		_this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
 		_this.handlePick = _this.handlePick.bind(_this);
+		_this.handleLogArray = _this.handleLogArray.bind(_this);
 		_this.state = {
 			options: ['Option 1', 'Option 2', 'Option 3']
 		};
@@ -39,21 +40,29 @@ var IndecisionApp = function (_React$Component) {
 			var randomNum = Math.floor(Math.random() * this.state.options.length);
 			var option = this.state.options[randomNum];
 
+			console.log(randomNum);
 			console.log(option);
+		}
+	}, {
+		key: 'handleLogArray',
+		value: function handleLogArray() {
+			var optionsArray = this.state.options;
+			console.log(optionsArray);
 		}
 	}, {
 		key: 'render',
 		value: function render() {
-			var title = 'Temp title';
-			var subtitle = 'Temp subtitle';
+			var pageTitle = 'Temp title';
+			var pageSubtitle = 'Temp subtitle';
 
 			return React.createElement(
 				'div',
 				null,
-				React.createElement(Header, { title: title, subtitle: subtitle }),
+				React.createElement(Header, { title: pageTitle, subtitle: pageSubtitle }),
 				React.createElement(Action, { hasOptions: this.state.options.length > 0, handlePick: this.handlePick }),
 				React.createElement(Options, { options: this.state.options, handleDeleteOptions: this.handleDeleteOptions }),
-				React.createElement(AddOption, null)
+				React.createElement(AddOption, null),
+				React.createElement(LogArray, { handleLogArray: this.handleLogArray })
 			);
 		}
 	}]);
@@ -178,7 +187,7 @@ var AddOption = function (_React$Component5) {
 			var option = e.target.elements.option.value.trim();
 
 			if (option) {
-				console.log('option!');
+				console.log(option);
 			}
 		}
 	}, {
@@ -204,8 +213,31 @@ var AddOption = function (_React$Component5) {
 	return AddOption;
 }(React.Component);
 
-var Option = function (_React$Component6) {
-	_inherits(Option, _React$Component6);
+var LogArray = function (_React$Component6) {
+	_inherits(LogArray, _React$Component6);
+
+	function LogArray() {
+		_classCallCheck(this, LogArray);
+
+		return _possibleConstructorReturn(this, (LogArray.__proto__ || Object.getPrototypeOf(LogArray)).apply(this, arguments));
+	}
+
+	_createClass(LogArray, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'button',
+				{ onClick: this.props.handleLogArray },
+				'Console Log array'
+			);
+		}
+	}]);
+
+	return LogArray;
+}(React.Component);
+
+var Option = function (_React$Component7) {
+	_inherits(Option, _React$Component7);
 
 	function Option() {
 		_classCallCheck(this, Option);
@@ -233,3 +265,25 @@ var Option = function (_React$Component6) {
 
 var appRoot = document.getElementById('app');
 ReactDOM.render(React.createElement(IndecisionApp, null), appRoot);
+
+/*
+Zaczynamy od zdefiniowania stanu options komponentu IndecisionApp przypisujac mu tablice z trzema wartosciami.
+this.state = {
+			options: ['Option 1', 'Option 2', 'Option 3']
+		};
+
+Deklarujemy wlasciwosc options w komponencie IndecisionApp podczas 
+renderowania zagniezdzonego komponentu <Options />
+<Options options={this.state.options} />
+
+Zwracamy elementy tabliy stanu options w komponencie Options
+{
+	this.props.options.map(function(optionFromArray){
+		return (<p key={optionFromArray}>{optionFromArray}</p>);
+	})
+}
+
+
+
+
+*/
