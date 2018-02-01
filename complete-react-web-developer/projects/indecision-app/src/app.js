@@ -40,8 +40,10 @@ ReactDOM.render(<VisibilityToggle />, appRoot);
 /*
 Zaczynamy od zadeklarowania metody, ktora nazwiemy handleVisibilityTogle.
 
-Nastepnie utworzymy konstruktor za pomoca ktorego bedziemy mieli dostep do wlasciwosci obiektu props i bedziemy mogli nimi manipulowac.
-W naszym przypadku interesuje nas manipulowanie stanem, czyli interesuje nas dostep do wlasciwosci state obiektu props.
+Nastepnie utworzymy konstruktor za pomoca ktorego bedziemy mieli dostep do wlasciwosci obiektu props 
+i bedziemy mogli nimi manipulowac.
+W naszym przypadku interesuje nas manipulowanie stanem, czyli interesuje nas dostep do wlasciwosci state 
+obiektu props.
 
 Nastepnie wlasciwosci state przypisujemy obiekt, ktorym w naszym przypadku jest 
 state = {
