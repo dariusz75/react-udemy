@@ -1,150 +1,78 @@
-class IndecisionApp extends React.Component {
+
+/*
+W tym cwiczeniu wyrenderujemy wiadomosc na ekran oraz zbudujemy przycisk ze zmiennym tekstem, w zaleznosci od stanu wyswietlanej wiadomosci
+*/
+
+class VisibilityToggle extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-		this.handleAddOption = this.handleAddOption.bind(this);
-		this.handlePick = this.handlePick.bind(this);
+		this.handleVisibilityTogle = this.handleVisibilityTogle.bind(this);
 		this.state = {
-			options: []
+			visibility: false
 		};
 	}
 
-	handleDeleteOptions() {
-		this.setState(() => {
+	handleVisibilityTogle() {
+		this.setState((prevState) => {
 			return {
-				options: []
+				visibility: !prevState.visibility
 			};
 		});
-	}
-
-	handlePick() {
-		const randomNum = Math.floor(Math.random() * this.state.options.length);
-		const option = this.state.options[randomNum];
 		
-		console.log(option);
-	}
-
-	handleAddOption(option) {
-
-		if (!option) {
-			return 'Enter valid value.';
-		} else if (this.state.options.indexOf(option) > -1) {
-				return 'This item already exists';
-		} else {
-				this.setState((prevState) => {
-				return {
-					options: prevState.options.concat([option])
-				};
-			});
-		}
-
-	}
-
-	render() {
-		const title = 'Temp title';
-		const subtitle = 'Temp subtitle';
-
-		return (
-			<div>
-				<Header title={title} subtitle={subtitle}/>
-				<Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}/>
-				<Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions}/>
-				<AddOption handleAddOption={this.handleAddOption} />
-			</div>
-		);
-	} 
-}
-
-class Header extends React.Component {
-	render() {
-		return (
-			<div>
-				<h1>{this.props.title}</h1>
-				<h2>{this.props.subtitle}</h2>
-			</div>
-		);
-	} 
-}
-
-class Action extends React.Component {
+	}	
 
 	render() {
 		return (
 			<div>
-				<button onClick={this.props.handlePick} disabled={!this.props.hasOptions}>Tasks to do</button>
+				<h1>Visibility Toggle</h1>
+				<button onClick={this.handleVisibilityTogle}>{this.state.visibility ? 'Hide Info' : 'Show Info'}</button>
+				{this.state.visibility && ( <h2>Info panel placed</h2> )}
 			</div>
-		);
+			);
 	}
 }
-
-class Options extends React.Component {
-
-	render() {
-		return (
-			<div>
-				<h3>Options component here - {this.props.options.length} options avaliable.</h3>
-				{
-					this.props.options.map(function(optionFromArray){
-						return (<p key={optionFromArray}>{optionFromArray}</p>);
-					})
-				}
-				<button onClick={this.props.handleDeleteOptions}>Romove All</button>
-			</div>
-		);
-	}
-}
-
-
-
-class AddOption extends React.Component {
-	constructor(props) {
-		super(props);
-		this.handleAddOption = this.handleAddOption.bind(this);
-		this.state = {
-			error: undefined
-		}
-	}
-
-	handleAddOption(e) {
-		e.preventDefault();
-
-		const option = e.target.elements.option.value.trim();
-		const error = this.props.handleAddOption(option);
-
-		this.setState(() => {
-			return {
-				error: error
-			}
-		});
-
-	};
-
-	render() {
-		return (
-			<div>
-				{this.state.error && <p>{this.state.error}</p>}
-				<form onSubmit={this.handleAddOption}>
-					<input type="text" name="option"/>
-					<button>Add Option</button>
-				</form>
-			</div>
-		);
-	}
-}
-
-class Option extends React.Component {
-	render() {
-		return (
-			<div>
-				<h3>Option component here...</h3>
-			</div>
-		);
-	}
-}
-
-
 
 
 const appRoot = document.getElementById('app');
-ReactDOM.render(<IndecisionApp />, appRoot);
+ReactDOM.render(<VisibilityToggle />, appRoot);
+
+/*
+Zaczynamy od zadeklarowania metody, ktora nazwiemy handleVisibilityTogle.
+
+Nastepnie utworzymy konstruktor za pomoca ktorego bedziemy mieli dostep do wlasciwosci obiektu props 
+i bedziemy mogli nimi manipulowac.
+W naszym przypadku interesuje nas manipulowanie stanem, czyli interesuje nas dostep do wlasciwosci state 
+obiektu props.
+
+Nastepnie wlasciwosci state przypisujemy obiekt, ktorym w naszym przypadku jest 
+state = {
+			visibility: false
+		};
+
+visibility: false - odpowiada za stan domyslny komponentu wyswietlajacego informacje na ekranie.
+
+
+Za wyswietlenie odpowiedniego tekstu w przycisku, odpowiada ponizszy kod:
+<button onClick={this.handleVisibilityTogle}>{this.state.visibility ? 'Hide Info' : 'Show Info'}</button>
+
+Gdzie:
+{this.state.visibility ? 'Hide Info' : 'Show Info'} - odpowiada za logike wyswietlania 
+
+Natomiast:
+onClick={this.handleVisibilityTogle} - odpowiada za wywolanie zdarzenia renderowania komponentu z tekstem, przez zmiane jego stanu.
+
+Za zmiane stanu odpowiada funkcja
+handleVisibilityTogle() {
+		this.setState((prevState) => {
+			return {
+				visibility: !prevState.visibility
+			};
+		});
+
+
+Aby calosc zadzialala, musimy wykonac ostatni krok.
+this.handleVisibilityTogle = this.handleVisibilityTogle.bind(this);
+
+
+*/
