@@ -56,6 +56,8 @@ class IndecisionApp extends React.Component {
 	} 
 }
 
+
+
 class Header extends React.Component {
 	render() {
 		return (
@@ -67,8 +69,9 @@ class Header extends React.Component {
 	} 
 }
 
-class Action extends React.Component {
 
+
+class Action extends React.Component {
 	render() {
 		return (
 			<div>
@@ -78,8 +81,9 @@ class Action extends React.Component {
 	}
 }
 
-class Options extends React.Component {
 
+
+class Options extends React.Component {
 	render() {
 		return (
 			<div>
@@ -132,6 +136,8 @@ class AddOption extends React.Component {
 		);
 	}
 }
+
+
 
 class Option extends React.Component {
 	render() {
