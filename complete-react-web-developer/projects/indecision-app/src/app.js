@@ -62,44 +62,40 @@ handleAddOption(option) {
 }
 
 
-class Header extends React.Component {
-	render() {
+const Header = (props) => {
 		return (
 			<div>
-				<h1>{this.props.title}</h1>
-				<h3>{this.props.subtitle}</h3>
+				<h1>{props.title}</h1>
+				<h3>{props.subtitle}</h3>
 			</div>
 		);
-	} 
 }
 
 
-class Action extends React.Component {
-	render() {
+const Action = (props) => {
+	
 		return (
 			<div>
-				<button onClick={this.props.handlePick} disabled={!this.props.hasOptions}>Tasks to do</button>
+				<button onClick={props.handlePick} disabled={!props.hasOptions}>Tasks to do</button>
 			</div>
 		);
-	}
+	
 }
 
 
-class Options extends React.Component {
-	render() {
+const Options = (props) => {
 		return (
 			<div>
 				<h3>Options component</h3> 
-				<h4>Avaliable options: {this.props.options.length}</h4>
+				<h4>Avaliable options: {props.options.length}</h4>
 				{
-					this.props.options.map(function(optionFromArray){
+					props.options.map(function(optionFromArray){
 						return (<p key={optionFromArray}>{optionFromArray}</p>);
 					})
 				}
-				<button onClick={this.props.handleDeleteOptions}>Romove All</button>
+				<button onClick={props.handleDeleteOptions}>Romove All</button>
 			</div>
 		);
-	}
 }
 
 
@@ -144,14 +140,12 @@ class LogArray extends React.Component {
 }
 
 
-class Option extends React.Component {
-	render() {
+const Option = (props) => {
 		return (
 			<div>
 				<h3>Option component here...</h3>
 			</div>
 		);
-	}
 }
 
 
