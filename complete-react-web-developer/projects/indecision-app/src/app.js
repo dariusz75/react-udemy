@@ -6,7 +6,9 @@ class IndecisionApp extends React.Component {
 		this.handlePick = this.handlePick.bind(this);
 		this.handleLogArray = this.handleLogArray.bind(this);
 		this.state = {
-			options: ['Option 1', 'Option 2', 'Option 3']
+			options: ['Option 1', 'Option 2', 'Option 3'],
+			pageTitle: 'Header 2',
+			pageSubtitle: 'Text from state'
 		};
 	}
 
@@ -28,16 +30,18 @@ class IndecisionApp extends React.Component {
 
 	handleLogArray () {
 		const optionsArray = this.state.options;
+
 		console.log(optionsArray);
 	}
 
 	render() {
-		const pageTitle = 'Temp title';
-		const pageSubtitle = 'Temp subtitle';
+		const pageTitle = 'Header 1';
+		const pageSubtitle = 'Text from props';
 
 		return (
 			<div>
 				<Header title={pageTitle} subtitle={pageSubtitle}/>
+				<Header title={this.state.pageTitle} subtitle={this.state.pageSubtitle}/>
 				<Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}/>
 				<Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions}/>
 				<AddOption />
@@ -47,16 +51,18 @@ class IndecisionApp extends React.Component {
 	} 
 }
 
+
 class Header extends React.Component {
 	render() {
 		return (
 			<div>
 				<h1>{this.props.title}</h1>
-				<h2>{this.props.subtitle}</h2>
+				<h3>{this.props.subtitle}</h3>
 			</div>
 		);
 	} 
 }
+
 
 class Action extends React.Component {
 	render() {
@@ -68,11 +74,13 @@ class Action extends React.Component {
 	}
 }
 
+
 class Options extends React.Component {
 	render() {
 		return (
 			<div>
-				<h3>Options component here - {this.props.options.length} options avaliable.</h3>
+				<h3>Options component</h3> 
+				<h4>Avaliable options: {this.props.options.length}</h4>
 				{
 					this.props.options.map(function(optionFromArray){
 						return (<p key={optionFromArray}>{optionFromArray}</p>);
@@ -95,6 +103,8 @@ class AddOption extends React.Component {
 
 		if (option) {
 			console.log(option);
+		} else {
+			console.log('no option');
 		}
 	};
 
@@ -110,6 +120,7 @@ class AddOption extends React.Component {
 	}
 }
 
+
 class LogArray extends React.Component {
 	render() {
 		return (
@@ -117,6 +128,7 @@ class LogArray extends React.Component {
 		);
 	}
 }
+
 
 class Option extends React.Component {
 	render() {

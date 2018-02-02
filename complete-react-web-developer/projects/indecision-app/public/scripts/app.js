@@ -20,7 +20,9 @@ var IndecisionApp = function (_React$Component) {
 		_this.handlePick = _this.handlePick.bind(_this);
 		_this.handleLogArray = _this.handleLogArray.bind(_this);
 		_this.state = {
-			options: ['Option 1', 'Option 2', 'Option 3']
+			options: ['Option 1', 'Option 2', 'Option 3'],
+			pageTitle: 'Header 2',
+			pageSubtitle: 'Text from state'
 		};
 		return _this;
 	}
@@ -47,18 +49,20 @@ var IndecisionApp = function (_React$Component) {
 		key: 'handleLogArray',
 		value: function handleLogArray() {
 			var optionsArray = this.state.options;
+
 			console.log(optionsArray);
 		}
 	}, {
 		key: 'render',
 		value: function render() {
-			var pageTitle = 'Temp title';
-			var pageSubtitle = 'Temp subtitle';
+			var pageTitle = 'Header 1';
+			var pageSubtitle = 'Text from props';
 
 			return React.createElement(
 				'div',
 				null,
 				React.createElement(Header, { title: pageTitle, subtitle: pageSubtitle }),
+				React.createElement(Header, { title: this.state.pageTitle, subtitle: this.state.pageSubtitle }),
 				React.createElement(Action, { hasOptions: this.state.options.length > 0, handlePick: this.handlePick }),
 				React.createElement(Options, { options: this.state.options, handleDeleteOptions: this.handleDeleteOptions }),
 				React.createElement(AddOption, null),
@@ -91,7 +95,7 @@ var Header = function (_React$Component2) {
 					this.props.title
 				),
 				React.createElement(
-					'h2',
+					'h3',
 					null,
 					this.props.subtitle
 				)
@@ -147,9 +151,13 @@ var Options = function (_React$Component4) {
 				React.createElement(
 					'h3',
 					null,
-					'Options component here - ',
-					this.props.options.length,
-					' options avaliable.'
+					'Options component'
+				),
+				React.createElement(
+					'h4',
+					null,
+					'Avaliable options: ',
+					this.props.options.length
 				),
 				this.props.options.map(function (optionFromArray) {
 					return React.createElement(
@@ -188,6 +196,8 @@ var AddOption = function (_React$Component5) {
 
 			if (option) {
 				console.log(option);
+			} else {
+				console.log('no option');
 			}
 		}
 	}, {
