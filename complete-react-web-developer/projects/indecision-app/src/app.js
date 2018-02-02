@@ -4,9 +4,10 @@ class IndecisionApp extends React.Component {
 		super(props);
 		this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
 		this.handlePick = this.handlePick.bind(this);
+		this.handleAddOption = this.handleAddOption.bind(this);
 		this.handleLogArray = this.handleLogArray.bind(this);
 		this.state = {
-			options: ['Option 1', 'Option 2', 'Option 3'],
+			options: [],
 			pageTitle: 'Header 2',
 			pageSubtitle: 'Text from state'
 		};
@@ -28,6 +29,15 @@ class IndecisionApp extends React.Component {
 		console.log(option);
 	}
 
+handleAddOption(option) {
+		this.setState((prevState) => {
+			return {
+				options: prevState.options.concat([option])
+			};
+		});
+	}
+
+
 	handleLogArray () {
 		const optionsArray = this.state.options;
 
@@ -44,7 +54,7 @@ class IndecisionApp extends React.Component {
 				<Header title={this.state.pageTitle} subtitle={this.state.pageSubtitle}/>
 				<Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}/>
 				<Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions}/>
-				<AddOption />
+				<AddOption handleAddOption={this.handleAddOption}/>
 				<LogArray handleLogArray={this.handleLogArray}/>
 			</div>
 		);
@@ -95,6 +105,10 @@ class Options extends React.Component {
 
 
 class AddOption extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleAddOption = this.handleAddOption.bind(this);
+	}
 
 	handleAddOption(e) {
 		e.preventDefault();
@@ -102,7 +116,7 @@ class AddOption extends React.Component {
 		const option = e.target.elements.option.value.trim();
 
 		if (option) {
-			console.log(option);
+			this.props.handleAddOption(option);
 		} else {
 			console.log('no option');
 		}
@@ -146,24 +160,3 @@ class Option extends React.Component {
 const appRoot = document.getElementById('app');
 ReactDOM.render(<IndecisionApp />, appRoot);
 
-/*
-Zaczynamy od zdefiniowania stanu options komponentu IndecisionApp przypisujac mu tablice z trzema wartosciami.
-this.state = {
-			options: ['Option 1', 'Option 2', 'Option 3']
-		};
-
-Deklarujemy wlasciwosc options w komponencie IndecisionApp podczas 
-renderowania zagniezdzonego komponentu <Options />
-<Options options={this.state.options} />
-
-Zwracamy elementy tabliy stanu options w komponencie Options
-{
-	this.props.options.map(function(optionFromArray){
-		return (<p key={optionFromArray}>{optionFromArray}</p>);
-	})
-}
-
-
-
-
-*/
