@@ -3,7 +3,7 @@
 var template = React.createElement(
   'p',
   null,
-  'This is JSX?'
+  'Hello World!'
 );
 var appRoot = document.getElementById('app');
 
