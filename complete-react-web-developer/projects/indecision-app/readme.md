@@ -1,0 +1,1 @@
+live-server public - runs the local server
