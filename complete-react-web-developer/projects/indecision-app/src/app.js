@@ -15,7 +15,7 @@ const onFormSubmit = (e) => {
 	if (option) {
 		app.options.push(option);
 		e.target.elements.option.value = '';
-		keyValue = keyValue +1;
+		keyValue = keyValue + 1;
 		render();
 	}
 	console.log(app.options);
@@ -41,19 +41,19 @@ const render = () => {
 			<button onClick={onRemoveAll}>Remove All</button>
 			<ol>
 				{
-					app.options.map(function(option){
+					app.options.map(function (option) {
 						return (<li key={option}>{option}</li>);
 					})
 				}
 			</ol>
 			<form onSubmit={onFormSubmit}>
-				<input type="text" name="option"/>
+				<input type="text" name="option" />
 				<button>Add Option</button>
 			</form>
 		</div>
 	);
 
-	ReactDOM.render(template, appRoot); 
+	ReactDOM.render(template, appRoot);
 }
 
 render();
@@ -90,9 +90,9 @@ parametr 'option' to dowolna nazwa do ktorej przypiszemy wartosc elementu tablic
 Jak widzimy w powyzszymm przykladzie, funkcja zwraca element <li> posiadajacy wartosc elementu tablicy.
 Chcac zapetlic dzialane funkcji i zwrot wszystkich wartosci tablicy, musimy okreslic atrybut 'key' z unikalna wartoscia.
 Jest to wewnetrzny wymog Reacta.
-W naszym przykladzie przypisujemy wartosc elementu tablicy. To rozwiazanie nie jest wlasciwe poniewaz tablica moze zawierac elementy o takich samych wartosciach. Do naszego cwiczenia, jednak, wystarczy.
-
-
+W naszym przykladzie przypisujemy wartosc elementu tablicy. 
+To rozwiazanie nie jest wlasciwe poniewaz tablica moze zawierac elementy o takich samych wartosciach.
+Do naszego cwiczenia, jednak, wystarczy.
 
 
 
