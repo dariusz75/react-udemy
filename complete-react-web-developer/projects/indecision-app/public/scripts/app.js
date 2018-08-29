@@ -4,7 +4,8 @@ console.log('application is running');
 
 var app = {
 	title: 'Indecision App',
-	options: []
+	options: [],
+	option: ''
 };
 
 var onFormSubmit = function onFormSubmit(e) {
@@ -22,8 +23,17 @@ var onFormSubmit = function onFormSubmit(e) {
 	console.log(app.options);
 };
 
+var onMakeDecision = function onMakeDecision() {
+	var rand = Math.floor(Math.random() * app.options.length);
+	var option = app.options[rand];
+	app.option = option;
+	console.log(option);
+	render();
+};
+
 var onRemoveAll = function onRemoveAll() {
 	app.options = [];
+	app.option = '';
 	console.log(app.options);
 	render();
 };
@@ -52,6 +62,11 @@ var render = function render() {
 		),
 		React.createElement(
 			'button',
+			{ disabled: app.options.length === 0, onClick: onMakeDecision },
+			'What should I do'
+		),
+		React.createElement(
+			'button',
 			{ onClick: onRemoveAll },
 			'Remove All'
 		),
@@ -65,6 +80,12 @@ var render = function render() {
 					option
 				);
 			})
+		),
+		React.createElement(
+			'p',
+			null,
+			'I should do: ',
+			app.option
 		),
 		React.createElement(
 			'form',
@@ -113,9 +134,9 @@ parametr 'option' to dowolna nazwa do ktorej przypiszemy wartosc elementu tablic
 Jak widzimy w powyzszymm przykladzie, funkcja zwraca element <li> posiadajacy wartosc elementu tablicy.
 Chcac zapetlic dzialane funkcji i zwrot wszystkich wartosci tablicy, musimy okreslic atrybut 'key' z unikalna wartoscia.
 Jest to wewnetrzny wymog Reacta.
-W naszym przykladzie przypisujemy wartosc elementu tablicy. To rozwiazanie nie jest wlasciwe poniewaz tablica moze zawierac elementy o takich samych wartosciach. Do naszego cwiczenia, jednak, wystarczy.
-
-
+W naszym przykladzie przypisujemy wartosc elementu tablicy. 
+To rozwiazanie nie jest wlasciwe poniewaz tablica moze zawierac elementy o takich samych wartosciach.
+Do naszego cwiczenia, jednak, wystarczy.
 
 
 

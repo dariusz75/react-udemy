@@ -3,7 +3,8 @@ console.log('application is running');
 
 const app = {
 	title: 'Indecision App',
-	options: []
+	options: [],
+	option: ''
 };
 
 const onFormSubmit = (e) => {
@@ -21,15 +22,22 @@ const onFormSubmit = (e) => {
 	console.log(app.options);
 }
 
+const onMakeDecision = () => {
+	const rand = Math.floor(Math.random() * app.options.length);
+	const option = app.options[rand];
+	app.option = option;
+	console.log(option);
+	render();
+}
+
 const onRemoveAll = () => {
 	app.options = [];
+	app.option = '';
 	console.log(app.options);
 	render();
 }
 
-
 const appRoot = document.getElementById('app');
-
 
 const render = () => {
 
@@ -38,6 +46,7 @@ const render = () => {
 			<h1>{app.title}</h1>
 			<p>{app.options.length > 0 ? 'Your options' : 'No options'}</p>
 			<p>{app.options.length}</p>
+			<button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do</button>
 			<button onClick={onRemoveAll}>Remove All</button>
 			<ol>
 				{
@@ -46,6 +55,7 @@ const render = () => {
 					})
 				}
 			</ol>
+			<p>I should do: {app.option}</p>
 			<form onSubmit={onFormSubmit}>
 				<input type="text" name="option" />
 				<button>Add Option</button>
