@@ -21,12 +21,12 @@ class IndecisionApp extends React.Component {
 	handlePick() {
 		const randomNum = Math.floor(Math.random() * this.state.options.length);
 		const option = this.state.options[randomNum];
-		
+
 		console.log(randomNum);
 		console.log(option);
 	}
 
-	handleLogArray () {
+	handleLogArray() {
 		const optionsArray = this.state.options;
 		console.log(optionsArray);
 	}
@@ -37,14 +37,14 @@ class IndecisionApp extends React.Component {
 
 		return (
 			<div>
-				<Header title={pageTitle} subtitle={pageSubtitle}/>
-				<Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}/>
-				<Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions}/>
-				<AddOption />
-				<LogArray handleLogArray={this.handleLogArray}/>
+				<Header title={pageTitle} subtitle={pageSubtitle} />
+				<Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick} />
+				<Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions} />
+				<AddOption handleAddOption={this.handleAddOption} />
+				<LogArray handleLogArray={this.handleLogArray} />
 			</div>
 		);
-	} 
+	}
 }
 
 class Header extends React.Component {
@@ -55,7 +55,7 @@ class Header extends React.Component {
 				<h2>{this.props.subtitle}</h2>
 			</div>
 		);
-	} 
+	}
 }
 
 class Action extends React.Component {
@@ -74,7 +74,7 @@ class Options extends React.Component {
 			<div>
 				<h3>Options component here - {this.props.options.length} options avaliable.</h3>
 				{
-					this.props.options.map(function(optionFromArray){
+					this.props.options.map(function (optionFromArray) {
 						return (<p key={optionFromArray}>{optionFromArray}</p>);
 					})
 				}
@@ -88,21 +88,13 @@ class Options extends React.Component {
 
 class AddOption extends React.Component {
 
-	handleAddOption(e) {
-		e.preventDefault();
 
-		const option = e.target.elements.option.value.trim();
-
-		if (option) {
-			console.log(option);
-		}
-	};
 
 	render() {
 		return (
 			<div>
 				<form onSubmit={this.handleAddOption}>
-					<input type="text" name="option"/>
+					<input type="text" name="option" />
 					<button>Add Option</button>
 				</form>
 			</div>
@@ -113,7 +105,7 @@ class AddOption extends React.Component {
 class LogArray extends React.Component {
 	render() {
 		return (
-					<button onClick={this.props.handleLogArray}>Console Log array</button>
+			<button onClick={this.props.handleLogArray}>Console Log array</button>
 		);
 	}
 }

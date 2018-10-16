@@ -61,7 +61,7 @@ var IndecisionApp = function (_React$Component) {
 				React.createElement(Header, { title: pageTitle, subtitle: pageSubtitle }),
 				React.createElement(Action, { hasOptions: this.state.options.length > 0, handlePick: this.handlePick }),
 				React.createElement(Options, { options: this.state.options, handleDeleteOptions: this.handleDeleteOptions }),
-				React.createElement(AddOption, null),
+				React.createElement(AddOption, { handleAddOption: this.handleAddOption }),
 				React.createElement(LogArray, { handleLogArray: this.handleLogArray })
 			);
 		}
@@ -180,17 +180,6 @@ var AddOption = function (_React$Component5) {
 	}
 
 	_createClass(AddOption, [{
-		key: 'handleAddOption',
-		value: function handleAddOption(e) {
-			e.preventDefault();
-
-			var option = e.target.elements.option.value.trim();
-
-			if (option) {
-				console.log(option);
-			}
-		}
-	}, {
 		key: 'render',
 		value: function render() {
 			return React.createElement(
