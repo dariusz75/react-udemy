@@ -2,12 +2,15 @@ class IndecisionApp extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+		this.handleDeleteOption = this.handleDeleteOption.bind(this);
 		this.handlePick = this.handlePick.bind(this);
 		this.handleAddOption = this.handleAddOption.bind(this);
 		this.state = {
 			options: props.options
 		};
 	}
+
+
 	handleDeleteOptions() {
 		this.setState(() => {
 			return {
@@ -15,11 +18,20 @@ class IndecisionApp extends React.Component {
 			};
 		});
 	}
+
+
+	handleDeleteOption(option) {
+		console.log('The option is ', option);
+	}
+
+
 	handlePick() {
 		const randomNum = Math.floor(Math.random() * this.state.options.length);
 		const option = this.state.options[randomNum];
 		alert(option);
 	}
+
+
 	handleAddOption(option) {
 		if (!option) {
 			return 'Enter valid value to add item';
@@ -33,6 +45,8 @@ class IndecisionApp extends React.Component {
 			};
 		});
 	}
+
+
 	render() {
 		const subtitle = 'Subtitle';
 
@@ -46,6 +60,7 @@ class IndecisionApp extends React.Component {
 				<Options
 					options={this.state.options}
 					handleDeleteOptions={this.handleDeleteOptions}
+					handleDeleteOption={this.handleDeleteOption}
 				/>
 				<AddOption
 					handleAddOption={this.handleAddOption}
@@ -53,11 +68,14 @@ class IndecisionApp extends React.Component {
 			</div>
 		);
 	}
+
 }
+
 
 IndecisionApp.defaultProps = {
 	options: []
 }
+
 
 const Header = (props) => {
 	return (
@@ -72,6 +90,7 @@ Header.defaultProps = {
 	title: 'Default tilte'
 };
 
+
 const Action = (props) => {
 	return (
 		<div>
@@ -80,21 +99,29 @@ const Action = (props) => {
 	);
 };
 
+
 const Options = (props) => {
 	return (
 		<div>
 			<button onClick={props.handleDeleteOptions}>Remove All</button>
 			{
-				props.options.map((option) => <Option key={option} optionText={option} />)
+				props.options.map((option) => (
+					<Option
+						key={option}
+						optionText={option}
+						handleDeleteOption={props.handleDeleteOption}
+					/>))
 			}
 		</div>
 	);
 };
 
+
 const Option = (props) => {
 	return (
 		<div>
 			{props.optionText}
+			<button onClick={props.handleDeleteOption}>Remove</button>
 		</div>
 	);
 };
